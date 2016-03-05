@@ -1,0 +1,33 @@
+{
+	"extends": ["standard", "standard-react"],
+	"parser": "babel-eslint",
+	"globals": {
+		"angular": false,
+		"module": false,
+		"inject": false,
+		"alert": false,
+		"require": false,
+		"console": false,
+		"describe": false,
+		"it": false,
+		"beforeEach": false,
+		"expect": false,
+		"spyOn": false,
+		"localStorage": false
+	},
+	"ecmaFeatures": {
+		"arrowFunctions": true,
+		"blockBindings": true,
+		"templateStrings": true,
+		"modules": true
+	},
+  "rules": {
+			"react/prop-types": 0,
+      "semi": [2, "always"],
+      "quotes": [2, "single"],
+			"no-console": [0],
+			"no-trailing-spaces": [0],
+			"space-before-function-paren": [2, "never"],
+			"indent": [2, "tab"]
+		}
+}

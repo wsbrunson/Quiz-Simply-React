@@ -1,0 +1,40 @@
+#{$all-button-inputs},
+button {
+  @include transition-duration(0.2s);
+  @include appearance(none);
+
+  -webkit-font-smoothing: antialiased;
+  background-color: $color-primary;
+  border: none;
+  border-bottom: solid 6px $color-button-click;
+  border-radius: 15px;
+  color: $color-secondary;
+  cursor: pointer;
+  display: block;
+  font-family: $base-font-family;
+  font-size: $button-font-size;
+  font-weight: 600;
+  line-height: 1;
+  padding: 6px 20px 6px 20px;
+  text-decoration: none;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    background-color: $color-button-hover;
+    border-bottom: solid 6px #00682d;
+  }
+
+  &:active {
+    box-shadow: 0, 1px, 4px, rgba(0, 0, 0, 0.6), inset;
+    background: $color-button-click;
+    border-bottom: solid 6px #001c0c;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
