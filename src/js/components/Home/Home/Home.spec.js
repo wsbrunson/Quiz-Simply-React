@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
+import { createRenderer } from 'react-addons-test-utils';
 import Home from './Home';
 
-const renderer = ReactTestUtils.createRenderer();
+const renderer = createRenderer();
 renderer.render(React.createElement(Home, {}));
 
 const component = renderer.getRenderOutput();

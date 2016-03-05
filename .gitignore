@@ -5,6 +5,7 @@
 /dist/
 /.vscode/
 /typings/
+/build/
 
 
 .DS_Store

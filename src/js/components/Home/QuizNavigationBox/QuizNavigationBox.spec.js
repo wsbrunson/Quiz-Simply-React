@@ -1,16 +1,18 @@
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
+import { createRenderer } from 'react-addons-test-utils';
 import QuizNavigationBox from './QuizNavigationBox';
 
-const shallowRenderer = ReactTestUtils.createRenderer();
+const renderer = createRenderer();
+renderer.render(React.createElement(QuizNavigationBox, {
+	info.title = 'title 1',
+	info.buttonText = 'buttonText 1'
+}));
 
-shallowRenderer.render(React.createElement(QuizNavigationBox, {}));
-
-const component = shallowRenderer.getRenderOutput();
+const component = renderer.getRenderOutput();
 
 describe('Home Component', () => {
 	it('should correctly render', () => {
 		expect(component.props.className).toBe('quiz-navigation-box');
-		expect(component.props.children.length).toBe(4);
+		expect(component.props.children.length).toBe(3);
 	});
 });

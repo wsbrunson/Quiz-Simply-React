@@ -1,25 +1,16 @@
 {
-	"extends": ["standard", "standard-react"],
+	"extends": ["airbnb"],
 	"parser": "babel-eslint",
-	"globals": {
-		"angular": false,
-		"module": false,
-		"inject": false,
-		"alert": false,
-		"require": false,
-		"console": false,
-		"describe": false,
-		"it": false,
-		"beforeEach": false,
-		"expect": false,
-		"spyOn": false,
-		"localStorage": false
+	"plugins": ["react"],
+	"env": {
+		"jasmine": true
 	},
 	"ecmaFeatures": {
 		"arrowFunctions": true,
 		"blockBindings": true,
 		"templateStrings": true,
-		"modules": true
+		"modules": true,
+		"esnext": true
 	},
   "rules": {
 			"react/prop-types": 0,
