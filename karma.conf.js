@@ -1,6 +1,8 @@
+/* eslint-disable no-var */
 var webpackConfig = require('./webpack.config.dev.js');
+/* eslint-enable no-var */
 
-module.exports = function(config) {
+module.exports = function webpackConfigFunction(config) {
 	config.set({
 		basePath: '',
 
@@ -9,11 +11,11 @@ module.exports = function(config) {
 		frameworks: ['jasmine'],
 
 		files: [
-			'src/js/**/*.spec.js'
+			'src/js/**/*.spec.js',
 		],
 
 		preprocessors: {
-			'src/js/**/*.spec.js': ['webpack', 'sourcemap']
+			'src/js/**/*.spec.js': ['webpack', 'sourcemap'],
 		},
 
 		plugins: [
@@ -22,43 +24,33 @@ module.exports = function(config) {
 			require('karma-phantomjs-launcher'),
 			require('karma-coverage'),
 			require('karma-spec-reporter'),
-			require('karma-sourcemap-loader')
+			require('karma-sourcemap-loader'),
 		],
 
 		browsers: [
-			'PhantomJS'
+			process.env.CONTINUOUS_INTEGRATION ? 'Firefox' : 'PhantomJS',
 		],
 
 		reporters: [
 			'spec',
-			'coverage'
+			'coverage',
 		],
 		coverageReporter: {
 			dir: 'build/reports/coverage',
 			reporters: [
 				{ type: 'html', subdir: 'report-html' },
 				{ type: 'lcov', subdir: 'report-lcov' },
-				{ type: 'cobertura', subdir: '.', file: 'cobertura.txt' }
-			]
+				{ type: 'cobertura', subdir: '.', file: 'cobertura.txt' },
+			],
 		},
-		// webpack: {
-		// 	resolve: {
-		// 		extensions: ['', '.js']
-		// 	},
-		// 	module: {
-		// 		loaders: [{
-		// 			test: /\.(js|jsx)$/, exclude: /(bower_components|node_modules)/,
-		// 			loader: 'babel-loader'
-		// 		}]
-		// 	}
-		// },
+
 		webpack: webpackConfig,
 
 		webpackMiddleware: {
 			noInfo: true,
 			stats: {
-				colors: true
-			}
-		}
+				colors: true,
+			},
+		},
 	});
 };
