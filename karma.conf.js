@@ -27,9 +27,7 @@ module.exports = function webpackConfigFunction(config) {
 			require('karma-sourcemap-loader'),
 		],
 
-		browsers: [
-			process.env.CONTINUOUS_INTEGRATION ? 'Firefox' : 'PhantomJS',
-		],
+		browsers: ['PhantomJS'],
 
 		reporters: [
 			'spec',
