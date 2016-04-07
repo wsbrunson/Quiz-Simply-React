@@ -15,7 +15,7 @@ const Quiz = props => {
 				questionTitle={question.question}
 				choices={question.choices}
 				selectAnswer={props.selectAnswer}
-				/>
+			/>
 		);
 	}
 

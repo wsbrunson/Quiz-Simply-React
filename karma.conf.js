@@ -1,7 +1,3 @@
-/* eslint-disable no-var */
-var webpackConfig = require('./webpack.config.dev.js');
-/* eslint-enable no-var */
-
 module.exports = function webpackConfigFunction(config) {
 	config.set({
 		basePath: '',
@@ -11,7 +7,7 @@ module.exports = function webpackConfigFunction(config) {
 		frameworks: ['jasmine'],
 
 		files: [
-			'src/js/**/*.spec.js',
+			'src/js/tests/**/*.spec.js',
 		],
 
 		preprocessors: {
@@ -22,6 +18,7 @@ module.exports = function webpackConfigFunction(config) {
 			require('karma-webpack'),
 			require('karma-jasmine'),
 			require('karma-phantomjs-launcher'),
+			require('karma-chrome-launcher'),
 			require('karma-coverage'),
 			require('karma-spec-reporter'),
 			require('karma-sourcemap-loader'),
@@ -42,7 +39,21 @@ module.exports = function webpackConfigFunction(config) {
 			],
 		},
 
-		webpack: webpackConfig,
+		webpack: {
+			devtool: 'inline-source-map',
+			module: {
+				loaders: [{
+					test: /\.js$/,
+					exclude: /\/node_modules\//,
+					loader: 'babel',
+				}],
+			},
+			externals: {
+				cheerio: 'window',
+				'react/lib/ExecutionEnvironment': true,
+				'react/lib/ReactContext': true,
+			},
+		},
 
 		webpackMiddleware: {
 			noInfo: true,
