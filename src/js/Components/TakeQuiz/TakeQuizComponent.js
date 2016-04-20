@@ -1,13 +1,10 @@
 import React from 'react';
-import autobind from 'autobind-decorator';
-
 import Rebase from 're-base';
 const base = Rebase.createClass('https://quiz-simply.firebaseio.com/');
 
 import Quiz from '../Quiz/Quiz';
 import Score from './Score';
 
-@autobind
 class TakeQuiz extends React.Component {
 
 	constructor() {
@@ -16,23 +13,26 @@ class TakeQuiz extends React.Component {
 		this.state = {
 			answerSelections: {},
 			questions: {},
-			isSubmitted: false
-		};
-	}
-
-	retakeQuiz() {
-		this.setState({
 			isSubmitted: false,
-			answerSelections: {}
-		});
+		};
+
+		this.retakeQuiz = this.retakeQuiz.bind(this);
+		this.selectAnswer = this.selectAnswer.bind(this);
+		this.submitQuiz = this.submitQuiz.bind(this);
 	}
 
-	selectAnswer(question, answer) {
-		this.state.answerSelections[question] = answer;
-
-		this.setState({
-			answerSelections: this.state.answerSelections
+	componentDidMount() {
+		base.syncState(`${this.props.params.quizId}/quiz`, {
+			context: this,
+			state: 'questions',
 		});
+			// var localStorageRef = localStorage.getItem(`order-${this.props.params.storeId}`);
+
+			// if (localStorageRef) {
+			//	 this.setState({
+			//		 order: JSON.parse(localStorageRef)
+			//	 });
+			// }
 	}
 
 	setAnswerSelections() {
@@ -43,11 +43,22 @@ class TakeQuiz extends React.Component {
 			3: 0,
 			4: 0,
 			5: 3,
-			6: 2
+			6: 2,
 		};
 
+		this.setState({ answerSelections });
+	}
+
+	selectAnswer(question, answer) {
+		this.state.answerSelections[question] = answer;
+
+		this.setState({ answerSelections: this.state.answerSelections });
+	}
+
+	retakeQuiz() {
 		this.setState({
-			answerSelections: answerSelections
+			isSubmitted: false,
+			answerSelections: {},
 		});
 	}
 
@@ -56,9 +67,7 @@ class TakeQuiz extends React.Component {
 		const lengthOfSelections = Object.keys(this.state.answerSelections).length;
 
 		if (lengthOfQuiz === lengthOfSelections) {
-			this.setState({
-				isSubmitted: true
-			});
+			this.setState({ isSubmitted: true });
 		} else {
 			alert('Please answer all questions before continuing');
 		}
@@ -75,10 +84,10 @@ class TakeQuiz extends React.Component {
 			);
 		} else {
 			return (
-				<div className='take-quiz'>
-					<div className='take-quiz-button-container'>
-						<button className='button' onClick={this.submitQuiz}>Submit</button>
-						<button className='button' onClick={this.setAnswerSelections}>Set Answers</button>
+				<div className="take-quiz">
+					<div className="take-quiz-button-container">
+						<button className="button" onClick={this.submitQuiz}>Submit</button>
+						<button className="button" onClick={this.setAnswerSelections}>Set Answers</button>
 					</div>
 					<Quiz
 						questions={this.state.questions}
@@ -88,21 +97,6 @@ class TakeQuiz extends React.Component {
 				</div>
 			);
 		}
-	}
-
-	componentDidMount() {
-		base.syncState(`${this.props.params.quizId}/quiz`, {
-			context: this,
-			state: 'questions'
-		});
-
-		// var localStorageRef = localStorage.getItem(`order-${this.props.params.storeId}`);
-
-		// if (localStorageRef) {
-		//	 this.setState({
-		//		 order: JSON.parse(localStorageRef)
-		//	 });
-		// }
 	}
 }
 

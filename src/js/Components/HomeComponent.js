@@ -1,7 +1,7 @@
 import React from 'react';
 import navigationHelper from '../Helpers/NavigationHelper';
 
-import QuizNavigationBox from './QuizNavigationBox';
+import QuizNavigationBox from './QuizNavigationBoxComponent';
 
 const App = () => {
 	return (
