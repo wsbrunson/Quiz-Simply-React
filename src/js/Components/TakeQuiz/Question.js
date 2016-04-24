@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Choice from './Choice';
+import Choice from './ChoiceComponent';
 
 const Question = props => {
 	function renderChoices() {

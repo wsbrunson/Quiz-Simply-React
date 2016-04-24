@@ -1,4 +1,4 @@
-import navigationHelper from '../../Helpers/NavigationHelper';
+import navigationHelper from 'helpers/NavigationHelper';
 
 describe('NavigationHelper', () => {
 	it('should return properties for the given state to navigate to', () => {

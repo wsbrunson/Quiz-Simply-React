@@ -3,9 +3,9 @@ import { Router } from 'react-router';
 import { Route } from 'react-router';
 import { browserHistory } from 'react-router';
 
-import TakeQuiz from './Components/TakeQuiz/TakeQuiz';
-import CreateQuiz from './Components/CreateQuiz/CreateQuiz';
-import Home from './Components/HomeComponent';
+import TakeQuiz from 'components/TakeQuiz/TakeQuizComponent';
+import CreateQuiz from 'components/CreateQuiz/CreateQuizComponent';
+import Home from 'components/HomeComponent';
 
 const routes = (
 	<Router history={browserHistory}>

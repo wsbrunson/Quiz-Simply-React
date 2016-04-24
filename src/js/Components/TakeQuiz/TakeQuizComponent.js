@@ -1,12 +1,14 @@
 import React from 'react';
-import Rebase from 're-base';
-const base = Rebase.createClass('https://quiz-simply.firebaseio.com/');
 
-import Quiz from '../Quiz/Quiz';
-import Score from './Score';
+import TakeQuizService from 'services/TakeQuizService';
 
-class TakeQuiz extends React.Component {
+import Quiz from 'components/TakeQuiz/QuizComponent';
+import Score from 'components/TakeQuiz/ScoreComponent';
+import UserAlert from 'components/UserAlertComponent';
 
+const takeQuizService = new TakeQuizService();
+
+export class TakeQuiz extends React.Component {
 	constructor() {
 		super();
 
@@ -22,31 +24,10 @@ class TakeQuiz extends React.Component {
 	}
 
 	componentDidMount() {
-		base.syncState(`${this.props.params.quizId}/quiz`, {
+		takeQuizService.syncState(`${this.props.params.quizId}/quiz`, {
 			context: this,
 			state: 'questions',
 		});
-			// var localStorageRef = localStorage.getItem(`order-${this.props.params.storeId}`);
-
-			// if (localStorageRef) {
-			//	 this.setState({
-			//		 order: JSON.parse(localStorageRef)
-			//	 });
-			// }
-	}
-
-	setAnswerSelections() {
-		const answerSelections = {
-			0: 1,
-			1: 1,
-			2: 3,
-			3: 0,
-			4: 0,
-			5: 3,
-			6: 2,
-		};
-
-		this.setState({ answerSelections });
 	}
 
 	selectAnswer(question, answer) {
@@ -100,4 +81,7 @@ class TakeQuiz extends React.Component {
 	}
 }
 
-export default TakeQuiz;
+TakeQuiz.propTypes = {
+	hasBeenSubmitted: React.PropTypes.bool.isRequired,
+	quizId: React.PropTypes.string.isRequired,
+};
