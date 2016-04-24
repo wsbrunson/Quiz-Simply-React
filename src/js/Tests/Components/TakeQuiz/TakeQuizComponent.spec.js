@@ -6,7 +6,7 @@ import UserAlert from 'components/UserAlertComponent'
 import Quiz from 'components/TakeQuiz/QuizComponent';
 import Score from 'components/TakeQuiz/ScoreComponent';
 
-fdescribe('TakeQuiz Component', () => {
+xdescribe('TakeQuiz Component', () => {
 	let component;
 
   describe('when the quiz has not been submitted', () => {

@@ -1,8 +1,11 @@
 import React from 'react';
-import autobind from 'autobind-decorator';
 
-@autobind
-class Score extends React.Component {
+export class Score extends React.Component {
+	constructor() {
+		super();
+
+		this.calculateScore = this.calculateScore.bind(this);
+	}
 
 	calculateScore() {
 		const correctAnswers = this.props.correctAnswers;
@@ -42,5 +45,3 @@ Score.PropTypes = {
 	retakeQuiz: React.PropTypes.func.isRequired,
 	showAnswers: React.PropTypes.number.isRequired
 };
-
-export default Score;

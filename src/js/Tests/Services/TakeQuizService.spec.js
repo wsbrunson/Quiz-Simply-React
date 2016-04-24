@@ -2,7 +2,7 @@ import TakeQuizService from 'services/TakeQuizService';
 import Rebase from 're-base';
 import Constants from '../../constants';
 
-fdescribe('TakeQuiz Service', () => {
+describe('TakeQuiz Service', () => {
   let firebaseEndpointFake
   let syncStateUrl;
   let syncStateParameters;
