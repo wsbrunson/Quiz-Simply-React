@@ -1,5 +1,6 @@
 # Quiz Simply
 [![Build Status](https://travis-ci.org/wsbrunson/Quiz-Simply-React.svg?branch=master)](https://travis-ci.org/wsbrunson/Quiz-Simply-React)
+
 A simple quiz application. Current version only lets a user take a quiz manually created.
 A future version will use a create quiz menu
 
