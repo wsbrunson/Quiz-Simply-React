@@ -10,16 +10,16 @@ class QuizNavigationBox extends React.Component {
 		};
 
 		this.goToQuizState = this.goToQuizState.bind(this);
-		this._onBlur = this._onBlur.bind(this);
+		this.onBlur = this.onBlur.bind(this);
+	}
+
+	onBlur(blurEvent) {
+		const navigationInputValue = blurEvent.target.value;
+		this.setState({ navigationInputValue });
 	}
 
 	goToQuizState() {
 		browserHistory.push(null, `${this.props.info.url}${this.state.navigationInputValue}`);
-	}
-
-	_onBlur(blurEvent) {
-		const navigationInputValue = blurEvent.target.value;
-		this.setState({ navigationInputValue });
 	}
 
 	render() {
@@ -31,7 +31,7 @@ class QuizNavigationBox extends React.Component {
 					className="quiz-navigation-box-input"
 					type="text"
 					required
-					onBlur={this._onBlur}
+					onBlur={this.onBlur}
 				/>
 				<button
 					onClick={this.goToQuizState}

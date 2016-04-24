@@ -2,6 +2,13 @@
 	"extends": ["airbnb"],
 	"parser": "babel-eslint",
 	"plugins": ["react"],
+	"settings": {
+		"import/resolver": {
+			"webpack": {
+				"config": "webpack.config.dev.js"
+			}
+		}
+	},
 	"env": {
 		"jasmine": true
 	},
@@ -13,7 +20,9 @@
 		"esnext": true
 	},
   "rules": {
+			"arrow-body-style": 0,
 			"react/prop-types": 0,
+			"react/jsx-indent": 0,
 			"react/jsx-indent-props": [0],
 			"react/jsx-no-bind": [0],
       "semi": [2, "always"],

@@ -1,4 +1,6 @@
+/* eslint-disable no-var */
 var path = require('path');
+/* eslint-enable no-var */
 
 module.exports = function webpackConfigFunction(config) {
 	config.set({
@@ -16,6 +18,7 @@ module.exports = function webpackConfigFunction(config) {
 			'src/js/Tests/**/*.spec.js': ['webpack', 'sourcemap'],
 		},
 
+		/* eslint-enable global-require */
 		plugins: [
 			require('karma-webpack'),
 			require('karma-jasmine'),
@@ -25,6 +28,7 @@ module.exports = function webpackConfigFunction(config) {
 			require('karma-spec-reporter'),
 			require('karma-sourcemap-loader'),
 		],
+		/* eslint-enable global-require */
 
 		browsers: ['PhantomJS'],
 
@@ -50,18 +54,18 @@ module.exports = function webpackConfigFunction(config) {
 					loader: 'babel',
 				}],
 			},
-			
+
 			resolve: {
 				root: path.resolve(__dirname),
 				alias: {
 					components: 'src/js/Components',
 					helpers: 'src/js/Helpers',
 					services: 'src/js/Services',
-					app: 'src/js'
+					app: 'src/js',
 				},
-				extensions: ['', '.js', '.jsx']
+				extensions: ['', '.js', '.jsx'],
 			},
-		
+
 			externals: {
 				cheerio: 'window',
 				'react/lib/ExecutionEnvironment': true,

@@ -1,7 +1,5 @@
 import React from 'react';
-import { Router } from 'react-router';
-import { Route } from 'react-router';
-import { browserHistory } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 
 import TakeQuiz from 'components/TakeQuiz/TakeQuizComponent';
 import CreateQuiz from 'components/CreateQuiz/CreateQuizComponent';

@@ -1,7 +1,6 @@
 import React from 'react';
-import classNames from 'classnames';
 
-const Choice = props => {
+export const Choice = props => {
 	const inputId = `${props.choiceNumber}-${props.questionNumber}`;
 
 	const questionId = props.questionNumber - 1;
@@ -18,7 +17,7 @@ const Choice = props => {
 			<label htmlFor={inputId}>
 				<span></span>
 				<p className="choice-text">
-					{ `${props.choiceNumber}. ${props.answer}`}
+					{`${props.choiceNumber}. ${props.answer}`}
 				</p>
 			</label>
 		</li>
@@ -31,5 +30,3 @@ Choice.propTypes = {
 	choiceNumber: React.PropTypes.number.isRequired,
 	questionNumber: React.PropTypes.number.isRequired,
 };
-
-export default Choice;

@@ -4,7 +4,7 @@ import Choice from './ChoiceComponent';
 
 const Question = props => {
 	function renderChoices() {
-		let elements = [];
+		const elements = [];
 
 		props.choices.forEach((choice, key) => {
 			elements.push(
@@ -25,9 +25,9 @@ const Question = props => {
 		console.log(true);
 	}
 	return (
-		<div className='question'>
-			<h3 className='question-title'>{`Question ${props.questionNumber}`}</h3>
-				<p className='question-copy'>{`${props.questionTitle}:`}</p>
+		<div className="question">
+			<h3 className="question-title">{`Question ${props.questionNumber}`}</h3>
+				<p className="question-copy">{`${props.questionTitle}:`}</p>
 				<ul>
 					{renderChoices()}
 				</ul>
@@ -39,7 +39,7 @@ Question.PropTypes = {
 	questionTitle: React.PropTypes.string.isRequired,
 	choices: React.PropTypes.array.isRequired,
 	selectAnswer: React.PropTypes.func.isRequired,
-	key: React.PropTypes.number.isRequired
+	key: React.PropTypes.number.isRequired,
 };
 
 export default Question;
