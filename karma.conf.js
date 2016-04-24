@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = function webpackConfigFunction(config) {
 	config.set({
 		basePath: '',
@@ -48,6 +50,18 @@ module.exports = function webpackConfigFunction(config) {
 					loader: 'babel',
 				}],
 			},
+			
+			resolve: {
+				root: path.resolve(__dirname),
+				alias: {
+					components: 'src/js/Components',
+					helpers: 'src/js/Helpers',
+					services: 'src/js/Services',
+					app: 'src/js'
+				},
+				extensions: ['', '.js', '.jsx']
+			},
+		
 			externals: {
 				cheerio: 'window',
 				'react/lib/ExecutionEnvironment': true,

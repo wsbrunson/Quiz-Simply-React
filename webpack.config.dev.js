@@ -12,6 +12,18 @@ module.exports = {
 		'webpack/hot/dev-server',
 		'./src/js/main',
 	],
+	
+	resolve: {
+		root: path.resolve(__dirname),
+		alias: {
+			components: 'src/js/Components',
+			TakeQuizComponent: '/src/js/Components/TakeQuiz/TakeQuizComponent',
+			helpers: 'src/js/Helpers',
+			services: 'src/js/Services',
+			app: 'src/js'
+		},
+		extensions: ['', '.js', '.jsx']
+	},
 
 	output: {
 		path: path.join(__dirname, 'dist'),
@@ -29,6 +41,9 @@ module.exports = {
 	],
 
 	module: {
+		preLoaders: [
+			{ test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/ }
+    ],
 		loaders: [{
 			test: /\.scss$/,
 			loaders: ['style', 'css', 'sass'],
@@ -45,6 +60,11 @@ module.exports = {
 			},
 		}],
 	},
+	
+	eslint: {
+		failOnWarning: true,
+		failOnError: true,
+  },
 
 	devServer: {
 		contentBase: './dist',

@@ -10,6 +10,6 @@
 		"jspm_packages",
 		"tmp",
 		"temp",
-        "build"
+    "build"
 	]
 }
