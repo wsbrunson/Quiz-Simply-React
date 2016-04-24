@@ -1,7 +1,7 @@
 import Rebase from 're-base';
 import { firebaseUrl } from 'app/constants';
 
-export class TakeQuizService {
+class TakeQuizService {
 	constructor() {
 		this.firebaseEndpoint = Rebase.createClass(firebaseUrl);
 	}
@@ -10,3 +10,5 @@ export class TakeQuizService {
 		this.firebaseEndpoint.syncState(url, parameters);
 	}
 }
+
+export default TakeQuizService;
