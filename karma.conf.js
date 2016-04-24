@@ -9,11 +9,11 @@ module.exports = function webpackConfigFunction(config) {
 		frameworks: ['jasmine'],
 
 		files: [
-			'src/js/tests/**/*.spec.js',
+			'src/js/Tests/**/*.spec.js',
 		],
 
 		preprocessors: {
-			'src/js/**/*.spec.js': ['webpack', 'sourcemap'],
+			'src/js/Tests/**/*.spec.js': ['webpack', 'sourcemap'],
 		},
 
 		plugins: [
