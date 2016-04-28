@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'prod') {
 	if (module.hot) {
 		module.hot.accept();
 	}

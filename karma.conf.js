@@ -1,5 +1,6 @@
 /* eslint-disable no-var */
-var path = require('path');
+// var path = require('path');
+var webpackConfig = require('./webpack.config.js');
 /* eslint-enable no-var */
 
 module.exports = function webpackConfigFunction(config) {
@@ -11,14 +12,14 @@ module.exports = function webpackConfigFunction(config) {
 		frameworks: ['jasmine'],
 
 		files: [
-			'src/js/Tests/**/*.spec.js',
+			'src/js/Tests/test_index.js',
 		],
 
 		preprocessors: {
-			'src/js/Tests/**/*.spec.js': ['webpack', 'sourcemap'],
+			'src/js/Tests/test_index.js': ['webpack', 'sourcemap'],
 		},
 
-		/* eslint-enable global-require */
+		/* eslint-disable global-require */
 		plugins: [
 			require('karma-webpack'),
 			require('karma-jasmine'),
@@ -36,6 +37,7 @@ module.exports = function webpackConfigFunction(config) {
 			'spec',
 			'coverage',
 		],
+
 		coverageReporter: {
 			dir: 'build/reports/coverage',
 			reporters: [
@@ -45,33 +47,37 @@ module.exports = function webpackConfigFunction(config) {
 			],
 		},
 
-		webpack: {
-			devtool: 'inline-source-map',
-			module: {
-				loaders: [{
-					test: /\.js$/,
-					exclude: /\/node_modules\//,
-					loader: 'babel',
-				}],
-			},
+		webpack: webpackConfig,
 
-			resolve: {
-				root: path.resolve(__dirname),
-				alias: {
-					components: 'src/js/Components',
-					helpers: 'src/js/Helpers',
-					services: 'src/js/Services',
-					app: 'src/js',
-				},
-				extensions: ['', '.js', '.jsx'],
-			},
-
-			externals: {
-				cheerio: 'window',
-				'react/lib/ExecutionEnvironment': true,
-				'react/lib/ReactContext': true,
-			},
-		},
+		// webpack: {
+		// 	devtool: 'inline-source-map',
+		//
+		// 	module: {
+		// 		loaders: [{
+		// 			test: /\.js$/,
+		// 			exclude: /\/node_modules\//,
+		// 			loader: 'babel',
+		// 		}],
+		// 	},
+		//
+		// 	resolve: {
+		// 		root: path.resolve(__dirname),
+		// 		alias: {
+		// 			components: 'src/js/Components',
+		// 			helpers: 'src/js/Helpers',
+		// 			services: 'src/js/Services',
+		// 			app: 'src/js',
+		// 		},
+		// 		extensions: ['', '.js', '.jsx'],
+		// 	},
+		//
+		// 	externals: {
+		// 		cheerio: 'window',
+		// 		'react/lib/ExecutionEnvironment': true,
+		// 		'react/lib/ReactContext': true,
+		// 		'react/addons': true,
+		// 	},
+		// },
 
 		webpackMiddleware: {
 			noInfo: true,

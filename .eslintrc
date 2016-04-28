@@ -10,7 +10,8 @@
 		}
 	},
 	"env": {
-		"jasmine": true
+		"jasmine": true,
+		"es6": true
 	},
 	"ecmaFeatures": {
 		"arrowFunctions": true,
