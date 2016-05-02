@@ -1,0 +1,9 @@
+- Selecting answers
+- Grade Quiz
+	- show score
+	- show correct and incorrect answers
+- One question per page
+	- Next button
+	- Previous Button
+	- Proceed on Selection
+- A quiz object should have a name and the quiz data
