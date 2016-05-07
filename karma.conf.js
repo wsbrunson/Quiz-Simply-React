@@ -6,14 +6,14 @@ module.exports = function webpackConfig(config) {
 		basePath: '',
 		frameworks: ['jasmine'],
 		files: [
-			'test/*.spec.js',
+			'test/**/*.spec.js',
 			// 'test/test_index.js',
 
 		],
 
 		preprocessors: {
-			'src/js/*.js': ['webpack', 'sourcemap'],
-			'test/*.spec.js': ['webpack', 'sourcemap'],
+			'src/js/**/*.js': ['webpack', 'sourcemap'],
+			'test/**/*.spec.js': ['webpack', 'sourcemap'],
 			// 'test/test_index.js': ['webpack', 'sourcemap'],
 		},
 
@@ -68,7 +68,7 @@ module.exports = function webpackConfig(config) {
 		colors: true,
 		logLevel: config.LOG_INFO,
 		autoWatch: true,
-		browsers: ['Chrome'],
+		browsers: ['PhantomJS'],
 		singleRun: false,
 	});
 };

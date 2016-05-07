@@ -1,10 +1,10 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
-import Quiz from '../src/js/quiz';
-import Question from '../src/js/question';
+import Quiz from '../../src/js/components/Quiz';
+import Question from '../../src/js/components/Question';
 
-import { fakeQuiz } from './fakeData/fakeQuiz';
+import { quizQuestions } from '../fakeData/quizFake';
 
 describe('Quiz Component', () => {
 	let Component1;
@@ -17,20 +17,18 @@ describe('Quiz Component', () => {
 		quizName1 = 'Test Quiz 1';
 		quizName2 = 'Test Quiz 2';
 
-		Component1 = mount(
-			<Quiz
-			quizName={quizName1}
-			quizData={fakeQuiz}
-			saveSelection={saveSelection}
-			/>
-		);
-		Component2 = mount(
-			<Quiz
-			quizName={quizName2}
-			quizData={fakeQuiz}
-			saveSelection={saveSelection}
-			/>
-		);
+		const createComponent = (quizName) => {
+			return shallow(
+				<Quiz
+					quizName={quizName}
+					quizData={quizQuestions}
+					saveSelection={saveSelection}
+				/>
+			);
+		};
+
+		Component1 = createComponent(quizName1);
+		Component2 = createComponent(quizName2);
 	});
 
 	it('should render', () => {

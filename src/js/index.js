@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import selections from './reducers/selections';
-import App from './App';
+import App from './components/App';
 
 let store = createStore(selections,
 	window.devToolsExtension ? window.devToolsExtension() : undefined

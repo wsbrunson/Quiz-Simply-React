@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ChoiceContainer from './containers/ChoiceContainer';
+import ChoiceContainer from '../containers/ChoiceContainer';
 
 const propTypes = {
 	questionText: React.PropTypes.string.isRequired,

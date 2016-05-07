@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Choice from '../src/js/choice';
+import Choice from '../../src/js/components/Choice';
 
 describe('Choice Component', () => {
 	let Component1;

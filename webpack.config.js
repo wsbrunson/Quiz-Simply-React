@@ -50,7 +50,7 @@ case ('test'):
 		loaders: [{
 			test: /\.js$/,
 			exclude: /\/node_modules\//,
-			loader: 'babel',
+			loader: 'babel-loader?plugins=rewire',
 		}],
 	};
 	config.externals = {

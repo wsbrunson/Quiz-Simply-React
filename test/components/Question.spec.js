@@ -1,8 +1,8 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
-import Question from '../src/js/Question';
-import Choice from '../src/js/Choice';
+import Question from '../../src/js/components/Question';
+import ChoiceContainer from '../../src/js/containers/ChoiceContainer';
 
 describe('Question Component', () => {
 	let ComponentWithSingleChoice;
@@ -20,21 +20,18 @@ describe('Question Component', () => {
 		answers = ['1', '2', '3'];
 		saveSelection = jasmine.createSpy('save');
 
-		ComponentWithSingleChoice = mount(
-			<Question
-				answers={answer}
-				questionText={question1Text}
-				saveSelection={saveSelection}
-			/>
-		);
+		const createComponent = (answersArray, text) => {
+			return shallow(
+				<Question
+					answers={answersArray}
+					questionText={text}
+					saveSelection={saveSelection}
+				/>
+			);
+		};
 
-		ComponentWithMultipleChoices = mount(
-			<Question
-				answers={answers}
-				questionText={question2Text}
-				saveSelection={saveSelection}
-			/>
-		);
+		ComponentWithSingleChoice = createComponent(answer, question1Text);
+		ComponentWithMultipleChoices = createComponent(answers, question2Text);
 	});
 
 	it('should render', () => {
@@ -45,8 +42,8 @@ describe('Question Component', () => {
 		expect(ComponentWithMultipleChoices.find('h3').text()).toBe(question2Text);
 	});
 
-	it('should render Choices for questions', () => {
-		expect(ComponentWithSingleChoice.find(Choice).length).toBe(1);
-		expect(ComponentWithMultipleChoices.find(Choice).length).toBe(3);
+	it('should render ChoiceContainers for questions', () => {
+		expect(ComponentWithSingleChoice.find(ChoiceContainer).length).toBe(1);
+		expect(ComponentWithMultipleChoices.find(ChoiceContainer).length).toBe(3);
 	});
 });

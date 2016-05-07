@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { addSelection } from '../actions';
-import Choice from '../Choice';
+
+import Choice from '../components/Choice';
 
 const mapStateToProps = () => {
 	return {

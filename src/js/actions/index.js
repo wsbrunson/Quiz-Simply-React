@@ -1,7 +1,7 @@
-export const addSelection = (question, answer) => {
+export const addSelection = (question, choice) => {
 	return {
 		type: 'ADD_SELECTION',
 		question,
-		answer,
+		choice,
 	};
 };
