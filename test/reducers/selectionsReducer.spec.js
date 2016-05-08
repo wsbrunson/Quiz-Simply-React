@@ -1,4 +1,4 @@
-import selections from '../../src/js/reducers/selections';
+import selectionsReducer from '../../src/js/reducers/selectionsReducer';
 
 describe('Selections Reducer', () => {
 	let oneChoice;
@@ -29,8 +29,8 @@ describe('Selections Reducer', () => {
 			choice: 0,
 		};
 
-		oneChoice = selections(undefined, question0choice1);
-		twoChoices = selections(oneChoice, question1choice3);
+		oneChoice = selectionsReducer(undefined, question0choice1);
+		twoChoices = selectionsReducer(oneChoice, question1choice3);
 	});
 
 	it('should add a selection', () => {
@@ -38,12 +38,14 @@ describe('Selections Reducer', () => {
 	});
 
 	it('should hold one selection per question', () => {
-		expect(selections(oneChoice, question0choice2)).toEqual([question0choice2]);
+		expect(selectionsReducer(oneChoice, question0choice2)).toEqual([question0choice2]);
 
-		expect(selections(twoChoices, question1choice0)).toEqual([question0choice1, question1choice0]);
+		expect(selectionsReducer(twoChoices, question1choice0))
+			.toEqual([question0choice1, question1choice0]);
 	});
 
 	it('should add selections', () => {
-		expect(selections(oneChoice, question1choice3)).toEqual([question0choice1, question1choice3]);
+		expect(selectionsReducer(oneChoice, question1choice3))
+			.toEqual([question0choice1, question1choice3]);
 	});
 });

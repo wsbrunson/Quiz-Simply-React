@@ -1,11 +1,21 @@
 import { connect } from 'react-redux';
-import { addSelection } from '../actions';
+import addSelection from '../actions/addSelection';
+import compareObjects from 'deep-equal';
 
 import Choice from '../components/Choice';
 
-const mapStateToProps = () => {
+const checkIfSelected = (selections, ownChoice) => {
+	return selections.filter(selection => {
+		return compareObjects(selection, ownChoice);
+	}).length;
+};
+
+const mapStateToProps = (state, ownProps) => {
 	return {
-		something: false,
+		isSelected: checkIfSelected(state.selections, {
+			question: ownProps.questionNumber,
+			choice: ownProps.choiceNumber,
+		}),
 	};
 };
 

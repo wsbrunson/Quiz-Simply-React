@@ -1,30 +1,69 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { storeFake } from '../fakeData/storeFake';
 import ChoiceContainer from '../../src/js/containers/ChoiceContainer';
+import Choice from '../../src/js/components/Choice';
 
 describe('ChoiceContainer', () => {
-	let Component;
+	describe('when a choice is in the selection array', () => {
+		let Component;
+		let ChoiceComponent;
 
-	beforeEach(() => {
-		const store = storeFake({ selections: [] });
+		beforeEach(() => {
+			const fakeSelection = {
+				question: 6,
+				choice: 7,
+			};
 
-		const wrapper = shallow(
-			<Provider store={store}>
-				<ChoiceContainer />
-			</Provider>
-		);
+			const store = storeFake({ selections: [fakeSelection] });
 
-		Component = wrapper.find(ChoiceContainer);
+			const wrapper = mount(
+				<Provider store={store}>
+					<ChoiceContainer
+						questionNumber={6}
+						choiceNumber={7}
+					/>
+				</Provider>
+			);
+
+			Component = wrapper.find(ChoiceContainer);
+			ChoiceComponent = Component.find(Choice);
+		});
+
+		it('should tell the Choice component it is selected', () => {
+			expect(ChoiceComponent.prop('isSelected')).toBeTruthy();
+		});
 	});
 
-	it('should render', () => {
-		expect(Component.length).toBe(1);
-	});
+	describe('when a choice is not in the selection array', () => {
+		let Component;
+		let ChoiceComponent;
 
-	it('should something', () => {
+		beforeEach(() => {
+			const fakeSelection = {
+				question: 1,
+				choice: 3,
+			};
 
+			const store = storeFake({ selections: [fakeSelection] });
+
+			const wrapper = mount(
+				<Provider store={store}>
+					<ChoiceContainer
+						questionNumber={2}
+						choiceNumber={4}
+					/>
+				</Provider>
+			);
+
+			Component = wrapper.find(ChoiceContainer);
+			ChoiceComponent = Component.find(Choice);
+		});
+
+		it('should tell the Choice component it is selected', () => {
+			expect(ChoiceComponent.prop('isSelected')).toBeFalsy();
+		});
 	});
 });

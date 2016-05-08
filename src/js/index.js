@@ -1,12 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
-import selections from './reducers/selections';
+import selectionsReducer from './reducers/selectionsReducer';
+import submitQuizReducer from './reducers/submitQuizReducer';
 import App from './components/App';
 
-let store = createStore(selections,
+const reducers = combineReducers({ selectionsReducer, submitQuizReducer });
+
+let store = createStore(reducers,
 	window.devToolsExtension ? window.devToolsExtension() : undefined
 );
 

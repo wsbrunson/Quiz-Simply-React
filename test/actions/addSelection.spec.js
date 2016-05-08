@@ -1,4 +1,4 @@
-import { addSelection } from '../../src/js/actions';
+import addSelection from '../../src/js/actions/addSelection';
 
 describe('addSelection Action', () => {
 	it('should return an addSelection action', () => {
