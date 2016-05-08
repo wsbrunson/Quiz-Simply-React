@@ -9,20 +9,13 @@ import quizService from '../../src/js/services/quizService';
 import { storeFake } from '../fakeData/storeFake';
 import { quizFake } from '../fakeData/quizFake';
 
-fdescribe('QuizContainer', () => {
+describe('QuizContainer', () => {
 	let Component;
 	let QuizComponent;
 
 	beforeEach(() => {
-		console.log(quizService);
-		QuizContainer.__Rewire__('quizService', () => {
-			return {
-				getQuizData: () => quizFake.quizData,
-				getQuizName: () => quizFake.quizName,
-			};
-		});
-		console.log(quizFake.quizData);
-		console.log(quizService.getQuizData());
+		spyOn(quizService, 'getQuizName').and.returnValue(quizFake.quizName);
+		spyOn(quizService, 'getQuizData').and.returnValue(quizFake.quizData);
 
 		const store = storeFake({ selections: [] });
 
@@ -41,11 +34,10 @@ fdescribe('QuizContainer', () => {
 	});
 
 	it('should render Quiz with quiz data', () => {
-		const quizData = QuizComponent.prop('quizData');
-		expect(quizData.length).toBe(2);
+		expect(QuizComponent.prop('quizData').length).toBe(2);
 	});
 
-	xit('should render the quiz with a quiz name from the quiz data', () => {
+	it('should render the quiz with a quiz name from the quiz data', () => {
 		expect(QuizComponent.prop('quizName')).toBe(quizFake.quizName);
 	});
 });

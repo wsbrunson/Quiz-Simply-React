@@ -24,24 +24,9 @@ if (typeof window !== 'undefined') {
 	window.React = React;
 }
 
-const fakeQuiz = [{
-	text: 'Question 1',
-	answers: [
-		'Choice 1-1',
-		'Choice 1-2',
-	],
-}, {
-	text: 'Question 2',
-	answers: [
-		'Choice 2-1',
-		'Choice 2-2',
-		'Choice 2-3',
-	],
-}];
-
 render(
   <Provider store={store}>
-    <App quizData={fakeQuiz} />
+    <App />
   </Provider>,
   document.getElementById(entryId)
 );
