@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Quiz from '../components/Quiz';
+import QuizPagination from '../components/QuizPaginationComponent';
 
 import quizService from '../services/quizService';
 
@@ -18,6 +18,6 @@ const mapDispatchToProps = () => {
 const QuizContainer = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Quiz);
+)(QuizPagination);
 
 export default QuizContainer;

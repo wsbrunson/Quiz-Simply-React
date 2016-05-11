@@ -19,7 +19,9 @@ export const quizQuestions = [
 	},
 ];
 
+export const quizName = 'Test Quiz';
+
 export const quizFake = {
-	quizName: 'Test Quiz',
+	quizName,
 	quizData: quizQuestions,
 };

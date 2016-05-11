@@ -4,44 +4,28 @@ import { shallow } from 'enzyme';
 import Choice from '../../src/js/components/Choice';
 
 describe('Choice Component', () => {
-	let Component1;
-	let Component2;
-	let choice1;
-	let choice2;
-	let saveSelection;
+	const choiceText = 'Choice 1';
+	const saveSelection = jasmine.createSpy('saveSelection');
+	let Component;
 
 	beforeEach(() => {
-		choice1 = 'Choice 1';
-		choice2 = 'Choice 2';
-		saveSelection = jasmine.createSpy('saveSelection');
-
-		Component1 = shallow(
+		Component = shallow(
 			<Choice
 				choiceIndex={0}
 				saveSelection={saveSelection}
-				choiceText={choice1}
-			/>
-		);
-
-		Component2 = shallow(
-			<Choice
-				choiceIndex={0}
-				saveSelection={saveSelection}
-				choiceText={choice2}
+				choiceText={choiceText}
 			/>
 		);
 	});
 
 	it('should render', () => {
-		expect(Component1.length).toBeTruthy();
-		expect(Component2.length).toBeTruthy();
+		expect(Component.length).toBeTruthy();
 
-		expect(Component1.find('label').text()).toBe(choice1);
-		expect(Component2.find('label').text()).toBe(choice2);
+		expect(Component.find('label').text()).toBe(choiceText);
 	});
 
 	it('should call saveSelection when clicked', () => {
-		Component1.find('input').simulate('click');
+		Component.find('input').simulate('click');
 
 		expect(saveSelection).toHaveBeenCalled();
 	});

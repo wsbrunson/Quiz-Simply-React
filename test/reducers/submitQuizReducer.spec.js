@@ -1,6 +1,6 @@
 import submitQuizReducer from '../../src/js/reducers/submitQuizReducer';
 
-xdescribe('SubmitQuiz Reducer', () => {
+describe('SubmitQuiz Reducer', () => {
 	let validSubmission;
 	let validSubmitState;
 
@@ -13,10 +13,6 @@ xdescribe('SubmitQuiz Reducer', () => {
 
 		validSubmitState = submitQuizReducer(undefined, validSubmission);
 		invalidSubmitState = submitQuizReducer(validSubmission, invalidSubmission);
-	});
-
-	it('should default to unsubmitted quiz', () => {
-		expect(submitQuizReducer()).toEqual(invalidSubmission);
 	});
 
 	it('should set the quiz to submitted if true', () => {

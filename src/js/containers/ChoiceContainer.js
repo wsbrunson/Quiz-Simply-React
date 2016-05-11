@@ -4,7 +4,7 @@ import compareObjects from 'deep-equal';
 
 import Choice from '../components/Choice';
 
-const checkIfSelected = (selections, ownChoice) => {
+const checkIfSelected = (selections = [], ownChoice) => {
 	return selections.filter(selection => {
 		return compareObjects(selection, ownChoice);
 	}).length;

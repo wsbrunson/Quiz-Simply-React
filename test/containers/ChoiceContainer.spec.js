@@ -24,6 +24,7 @@ describe('ChoiceContainer', () => {
 					<ChoiceContainer
 						questionNumber={6}
 						choiceNumber={7}
+						choiceText={'rudeboy'}
 					/>
 				</Provider>
 			);
@@ -62,7 +63,7 @@ describe('ChoiceContainer', () => {
 			ChoiceComponent = Component.find(Choice);
 		});
 
-		it('should tell the Choice component it is selected', () => {
+		it('should tell the Choice component it is not selected', () => {
 			expect(ChoiceComponent.prop('isSelected')).toBeFalsy();
 		});
 	});
