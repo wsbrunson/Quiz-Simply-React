@@ -30,6 +30,7 @@
       "quotes": [2, "single"],
 			"no-console": [0],
 			"no-trailing-spaces": [0],
+			"no-underscore-dangle": [0],
 			"space-before-function-paren": [2, "never"],
 			"indent": [2, "tab"]
 		}

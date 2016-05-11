@@ -1,0 +1,6 @@
+export const NEXT_QUESTION = 'NEXT_QUESTION';
+export const PREVIOUS_QUESTION = 'PREVIOUS_QUESTION';
+
+export const ADD_SELECTION = 'ADD_SELECTION';
+
+export const SUBMIT_QUIZ = 'SUBMIT_QUIZ';

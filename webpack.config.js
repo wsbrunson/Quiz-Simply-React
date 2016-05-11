@@ -17,11 +17,13 @@ switch (env) {
 
 case ('prod'):
 	config.entry = [
-		'./src/js/main',
+		'./src/js/app',
 	];
 	config.plugins = [
 		new webpack.optimize.UglifyJsPlugin({
-			compressor: { warnings: false },
+			compressor: {
+				warnings: false,
+			},
 		}),
 		new webpack.optimize.OccurenceOrderPlugin(),
 	];
@@ -31,7 +33,7 @@ case ('dev'):
 	config.entry = [
 		'webpack-dev-server/client?http://localhost:8080',
 		'webpack/hot/dev-server',
-		'./src/js/main',
+		'./src/js/index',
 	];
 	config.plugins = [
 		new webpack.HotModuleReplacementPlugin(),
@@ -48,14 +50,13 @@ case ('test'):
 		loaders: [{
 			test: /\.js$/,
 			exclude: /\/node_modules\//,
-			loader: 'babel',
+			loader: 'babel-loader?plugins=rewire',
 		}],
 	};
 	config.externals = {
 		cheerio: 'window',
 		'react/lib/ExecutionEnvironment': true,
 		'react/lib/ReactContext': true,
-		'react/addons': true,
 	};
 	break;
 default:
@@ -76,17 +77,6 @@ if (env !== 'test') {
 config.devtool = env === 'prod' ? 'source-map' : 'inline-source-map';
 
 config.output = env === 'test' ? null : output;
-
-config.resolve = {
-	root: path.resolve(__dirname),
-	alias: {
-		components: 'src/js/Components',
-		helpers: 'src/js/Helpers',
-		services: 'src/js/Services',
-		app: 'src/js',
-	},
-	extensions: ['', '.js', '.jsx'],
-};
 
 config.module = env === 'test' ? testModule : {
 	loaders: [{
