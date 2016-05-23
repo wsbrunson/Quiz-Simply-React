@@ -1,9 +1,11 @@
+import { quizName, quizDATA } from '../quizJSON';
+
 const getQuizName = () => {
-	return '';
+	return quizName;
 };
 
 const getQuizData = () => {
-	return [];
+	return quizDATA;
 };
 
 export default { getQuizName, getQuizData };

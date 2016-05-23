@@ -1,16 +1,20 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 
-import selectionsReducer from './reducers/selectionsReducer';
-import submitQuizReducer from './reducers/submitQuizReducer';
+import rootReducer from './reducers/rootReducer';
+
 import App from './components/App';
 
-const reducers = combineReducers({ selectionsReducer, submitQuizReducer });
+require('../css/main.scss');
 
-let store = createStore(reducers,
-	window.devToolsExtension ? window.devToolsExtension() : undefined
+const store = createStore(
+	rootReducer,
+	{},
+	applyMiddleware(thunkMiddleware)
+	// window.devToolsExtension ? window.devToolsExtension() : undefined
 );
 
 // For testing, so that the app gets added to PhantomJS DOM
@@ -31,5 +35,5 @@ render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById(entryId)
+  appEntry
 );

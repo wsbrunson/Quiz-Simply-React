@@ -17,7 +17,7 @@ switch (env) {
 
 case ('prod'):
 	config.entry = [
-		'./src/js/app',
+		'./src/js/index',
 	];
 	config.plugins = [
 		new webpack.optimize.UglifyJsPlugin({
@@ -50,7 +50,7 @@ case ('test'):
 		loaders: [{
 			test: /\.js$/,
 			exclude: /\/node_modules\//,
-			loader: 'babel-loader?plugins=rewire',
+			loader: 'babel-loader',
 		}],
 	};
 	config.externals = {

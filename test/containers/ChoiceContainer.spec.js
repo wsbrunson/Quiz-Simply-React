@@ -8,7 +8,6 @@ import Choice from '../../src/js/components/Choice';
 
 describe('ChoiceContainer', () => {
 	describe('when a choice is in the selection array', () => {
-		let Component;
 		let ChoiceComponent;
 
 		beforeEach(() => {
@@ -17,6 +16,8 @@ describe('ChoiceContainer', () => {
 				choice: 7,
 			};
 
+			const text = 'fake choice';
+
 			const store = storeFake({ selections: [fakeSelection] });
 
 			const wrapper = mount(
@@ -24,13 +25,12 @@ describe('ChoiceContainer', () => {
 					<ChoiceContainer
 						questionNumber={6}
 						choiceNumber={7}
-						choiceText={'rudeboy'}
+						choiceText={text}
 					/>
 				</Provider>
 			);
 
-			Component = wrapper.find(ChoiceContainer);
-			ChoiceComponent = Component.find(Choice);
+			ChoiceComponent = wrapper.find(Choice);
 		});
 
 		it('should tell the Choice component it is selected', () => {

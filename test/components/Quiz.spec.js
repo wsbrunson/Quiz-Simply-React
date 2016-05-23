@@ -13,16 +13,12 @@ describe('Quiz Component', () => {
 	beforeEach(() => {
 		quizName = 'Test Quiz';
 
-		const createComponent = (quizName) => {
-			return shallow(
-				<Quiz
-					quizName={quizName}
-					quizData={quizQuestions}
-				/>
-			);
-		};
-
-		Component = createComponent(quizName);
+		Component = shallow(
+			<Quiz
+				quizName={quizName}
+				quizQuestions={quizQuestions}
+			/>
+		);
 	});
 
 	it('should render', () => {
@@ -30,9 +26,9 @@ describe('Quiz Component', () => {
 	});
 
 	it('should have a heading', () => {
-		const heading = Component.find('.heading');
+		const heading = Component.find('h2');
 
-		expect(heading.length).toBeTruthy();
+		expect(heading.length).toBe(1);
 		expect(heading.text()).toBe(quizName);
 	});
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import addSelection from '../actions/addSelection';
+import addSelection from '../actions/addSelectionAction';
 import compareObjects from 'deep-equal';
 
 import Choice from '../components/Choice';

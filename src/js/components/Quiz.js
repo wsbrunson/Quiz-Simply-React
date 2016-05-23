@@ -4,31 +4,44 @@ import Question from './Question';
 
 const propTypes = {
 	quizName: React.PropTypes.string.isRequired,
-	quizData: React.PropTypes.array.isRequired,
+	quizQuestions: React.PropTypes.array.isRequired,
 };
 
-const Quiz = ({ quizData, quizName, saveSelection }) => {
-	const renderQuestions = ({ text, answers }, index) => {
+class Quiz extends React.Component {
+	constructor(props) {
+		super(props);
+		this.renderQuestions = this.renderQuestions.bind(this);
+	}
+
+	componentDidMount() {
+		this.props.fetchQuiz();
+	}
+
+	renderQuestions(question, index) {
 		return (
 			<Question
 				key={index}
-				questionText={text}
-				questionNumber={index}
-				saveSelection={saveSelection}
-				answers={answers}
+				questionText={question.text}
+				answers={question.answers}
 			/>
 		);
-	};
+	}
 
-	return (
-		<div>
-			<h1 className="heading">{quizName}</h1>
-			<ul>
-				{quizData.map(renderQuestions)}
-			</ul>
-		</div>
-	);
-};
+	render() {
+		if (!this.props.quizQuestions.length || this.props.quizQuestions[0] === undefined) {
+			return <p>No Questions Found</p>;
+		}
+
+		return (
+			<div className="quiz">
+				<h2 className="quiz-name">{this.props.quizName}</h2>
+				<ul>
+					{this.props.quizQuestions.map(this.renderQuestions)}
+				</ul>
+			</div>
+		);
+	}
+}
 
 Quiz.propTypes = propTypes;
 

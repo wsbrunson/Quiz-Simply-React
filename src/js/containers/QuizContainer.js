@@ -1,23 +1,58 @@
+import React from 'react';
 import { connect } from 'react-redux';
+import { fetchQuiz } from '../actions/fetchQuizActions';
+import { nextQuestion, previousQuestion } from '../actions/quizPaginationActions';
 
-import QuizPagination from '../components/QuizPaginationComponent';
+import QuizPaginationComponent from '../components/QuizPaginationComponent';
+import Quiz from '../components/Quiz';
 
-import quizService from '../services/quizService';
+const getQuestionAtIndex = (questions, index) => {
+	return questions ? [questions[index]] : [];
+};
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
+	const quizData = state.fetchQuizReducer;
+	const quizIndex = state.quizPaginationReducer.quizIndex;
+
 	return {
-		quizName: quizService.getQuizName(),
-		quizData: quizService.getQuizData(),
+		quizName: quizData.quizName,
+		quizQuestions: getQuestionAtIndex(quizData.quizQuestions, quizIndex),
 	};
 };
 
-const mapDispatchToProps = () => {
-	return {};
+const mapDispatchToProps = (dispatch) => {
+	return {
+		fetchQuiz: () => {
+			dispatch(fetchQuiz());
+		},
+		nextQuestion: () => {
+			dispatch(nextQuestion);
+		},
+		previousQuestion: () => {
+			dispatch(previousQuestion);
+		},
+	};
+};
+
+const QuizWrapperComponent = (props) => {
+	return (
+		<div>
+			<Quiz
+				quizName={props.quizName}
+				quizQuestions={props.quizQuestions}
+				fetchQuiz={props.fetchQuiz}
+			/>
+			<QuizPaginationComponent
+				nextQuestion={props.nextQuestion}
+				previousQuestion={props.previousQuestion}
+			/>
+		</div>
+	);
 };
 
 const QuizContainer = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(QuizPagination);
+)(Quiz);
 
 export default QuizContainer;

@@ -1,6 +1,6 @@
 import submitQuizReducer from '../../src/js/reducers/submitQuizReducer';
 
-describe('SubmitQuiz Reducer', () => {
+xdescribe('SubmitQuiz Reducer', () => {
 	let validSubmission;
 	let validSubmitState;
 

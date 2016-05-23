@@ -1,4 +1,7 @@
 {
   "presets": ["airbnb"],
-	"plugins": ["transform-object-rest-spread", "babel-plugin-rewire"]
+	"plugins": [
+		"transform-object-rest-spread",
+		"transform-object-assign",
+	]
 }

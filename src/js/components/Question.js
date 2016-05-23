@@ -7,21 +7,21 @@ const propTypes = {
 	answers: React.PropTypes.array.isRequired,
 };
 
-const Question = ({ questionText, answers, questionNumber }) => {
-	const renderAnswers = (choiceText, index) => {
+const Question = ({ questionText, answers }) => {
+	const renderAnswers = ({ text, id, questionId }, index) => {
 		return (
 			<ChoiceContainer
 				key={index}
-				choiceText={choiceText}
-				questionNumber={questionNumber}
-				choiceNumber={index}
+				choiceText={text}
+				questionNumber={questionId}
+				choiceNumber={id}
 			/>
 		);
 	};
 
 	return (
-		<li>
-			<h3>{questionText}</h3>
+		<li className="question">
+			<h3 className="question-text">{questionText}</h3>
 			<ul className="answers">
 				{answers.map(renderAnswers)}
 			</ul>
