@@ -9,13 +9,15 @@ const quizPaginationReducer = (state = initalState, actions) => {
 	case NEXT_QUESTION:
 		return (
 			Object.assign({}, state, {
-				quizIndex: state.quizIndex + 1,
+				quizIndex: actions.quizLength === state.quizIndex ?
+					actions.quizLength :
+					state.quizIndex + 1,
 			})
 		);
 	case PREVIOUS_QUESTION:
 		return (
 			Object.assign({}, state, {
-				quizIndex: state.quizIndex - 1,
+				quizIndex: state.quizIndex ? state.quizIndex - 1 : 0,
 			})
 		);
 

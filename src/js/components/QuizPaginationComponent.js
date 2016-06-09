@@ -9,8 +9,22 @@ const propTypes = {
 const QuizPaginationComponent = (props) => {
 	return (
 		<div>
-			<button onClick={props.previousQuestion}></button>
-			<button onClick={props.nextQuestion}></button>
+			<label>PREVIOUS
+				<input
+					type="button"
+					onClick={props.previousQuestion}
+					className="pagination-previous-button"
+					placeholder="PREVIOUS"
+				/>
+			</label>
+			<label>NEXT
+				<input
+					type="button"
+					onClick={props.nextQuestion.bind(this, props.quizLength)}
+					className="pagination-next-button"
+					placeholder="NEXT"
+				/>
+			</label>
 		</div>
 	);
 };

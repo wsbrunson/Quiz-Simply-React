@@ -11,12 +11,14 @@ const getQuestionAtIndex = (questions, index) => {
 };
 
 const mapStateToProps = (state) => {
-	const quizData = state.fetchQuizReducer;
-	const quizIndex = state.quizPaginationReducer.quizIndex;
+	const { fetchQuizReducer, quizPaginationReducer } = state;
 
 	return {
-		quizName: quizData.quizName,
-		quizQuestions: getQuestionAtIndex(quizData.quizQuestions, quizIndex),
+		quizName: fetchQuizReducer.quizName,
+		quizQuestions: getQuestionAtIndex(
+			fetchQuizReducer.quizQuestions,
+			quizPaginationReducer.quizIndex
+		),
 	};
 };
 
@@ -26,10 +28,10 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(fetchQuiz());
 		},
 		nextQuestion: () => {
-			dispatch(nextQuestion);
+			dispatch(nextQuestion());
 		},
 		previousQuestion: () => {
-			dispatch(previousQuestion);
+			dispatch(previousQuestion());
 		},
 	};
 };
@@ -53,6 +55,6 @@ const QuizWrapperComponent = (props) => {
 const QuizContainer = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Quiz);
+)(QuizWrapperComponent);
 
 export default QuizContainer;

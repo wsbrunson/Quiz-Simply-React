@@ -14,7 +14,6 @@ import quizService from '../../src/js/services/quizService';
 import { quizName, quizQuestions } from '../fakeData/quizFake';
 
 describe('QuizContainer', () => {
-	let Component;
 	let QuizComponent;
 	let QuizPagination;
 
@@ -35,13 +34,8 @@ describe('QuizContainer', () => {
 			</Provider>
 		);
 
-		Component = wrapper.find(QuizContainer);
-		QuizComponent = Component.find(Quiz);
-		QuizPagination = Component.find(QuizPaginationComponent);
-	});
-
-	it('should render', () => {
-		expect(Component.length).toBe(1);
+		QuizComponent = wrapper.find(Quiz);
+		QuizPagination = wrapper.find(QuizPaginationComponent);
 	});
 
 	it('should render the quiz with a quiz name from the quiz data', () => {
@@ -50,5 +44,54 @@ describe('QuizContainer', () => {
 
 	it('should render QuizPagination with correct quiz data', () => {
 		expect(QuizComponent.prop('quizQuestions').length).toBe(1);
+	});
+
+	it('should fetch quiz when loaded', () => {
+		expect(quizService.getQuizName).toHaveBeenCalled();
+		expect(quizService.getQuizData).toHaveBeenCalled();
+	});
+
+	xdescribe('- QuizPagination Component', () => {
+		let nextButton;
+		let questionText;
+
+		function getUpdatedText() {
+			return QuizComponent.find('h3').text();
+		}
+
+		describe('when clicking the next button', () => {
+			beforeEach(() => {
+				nextButton = QuizPagination.find('.pagination-next-button');
+				nextButton.simulate('click');
+			});
+
+			it('should navigate to the next question', () => {
+				expect(getUpdatedText()).toBe(quizQuestions[1].text);
+			});
+
+			it('should not navigate to the next question when there are non left', () => {
+				nextButton.simulate('click');
+
+				expect(getUpdatedText()).toBe(quizQuestions[1].text);
+			});
+		});
+
+		describe('when clicking the previous button', () => {
+			it('should navigate to the previous question', () => {
+				QuizPagination.find('.pagination-next-button').simulate('click');
+				questionText = QuizComponent.find('h3').text();
+				expect(questionText).toBe(quizQuestions[1].text);
+
+				QuizPagination.find('.pagination-previous-button').simulate('click');
+				questionText = QuizComponent.find('h3').text();
+				expect(questionText).toBe(quizQuestions[0].text);
+			});
+
+			it('should not navigate to the previous question when on the first question', () => {
+				QuizPagination.find('.pagination-previous-button').simulate('click');
+				questionText = QuizComponent.find('h3').text();
+				expect(questionText).toBe(quizQuestions[0].text);
+			});
+		});
 	});
 });
