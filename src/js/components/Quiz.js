@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Question from './Question';
 
 const propTypes = {
-	quizName: React.PropTypes.string.isRequired,
-	quizQuestions: React.PropTypes.array.isRequired,
+	quizName: PropTypes.string.isRequired,
+	quizQuestions: PropTypes.array.isRequired,
 };
 
-class Quiz extends React.Component {
+class Quiz extends Component {
 	constructor(props) {
 		super(props);
 		this.renderQuestions = this.renderQuestions.bind(this);
@@ -43,6 +43,6 @@ class Quiz extends React.Component {
 	}
 }
 
-Quiz.propTypes = propTypes;
+Quiz.PropTypes = propTypes;
 
 export default Quiz;
