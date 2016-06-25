@@ -27,3 +27,7 @@ const quizPaginationReducer = (state = initalState, actions) => {
 };
 
 export default quizPaginationReducer;
+
+export const getQuestionAtIndex = (questions, index) => (
+	questions ? [questions[index]] : []
+);

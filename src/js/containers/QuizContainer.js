@@ -1,60 +1,49 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchQuiz } from '../actions/fetchQuizActions';
 import { nextQuestion, previousQuestion } from '../actions/quizPaginationActions';
+import { getQuestionAtIndex } from '../reducers/quizPaginationReducer';
 
 import QuizPaginationComponent from '../components/QuizPaginationComponent';
 import Quiz from '../components/Quiz';
 
-const getQuestionAtIndex = (questions, index) => {
-	return questions ? [questions[index]] : [];
-};
+class QuizContainer extends Component {
+	componentDidMount() {
+		this.props.fetchQuiz();
+	}
 
-const mapStateToProps = (state) => {
-	const { fetchQuizReducer, quizPaginationReducer } = state;
+	render() {
+		return (
+			<div>
+				<Quiz
+					quizName={this.props.quizName}
+					quizQuestions={this.props.quizQuestions}
+					fetchQuiz={this.props.fetchQuiz}
+				/>
+				<QuizPaginationComponent
+					nextQuestion={this.props.nextQuestion}
+					previousQuestion={this.props.previousQuestion}
+				/>
+			</div>
+		);
+	}
+}
 
-	return {
-		quizName: fetchQuizReducer.quizName,
-		quizQuestions: getQuestionAtIndex(
-			fetchQuizReducer.quizQuestions,
-			quizPaginationReducer.quizIndex
-		),
-	};
-};
+const mapStateToProps = ({ fetchQuizReducer, quizPaginationReducer }) => ({
+	quizName: fetchQuizReducer.quizName,
+	quizQuestions: getQuestionAtIndex(
+		fetchQuizReducer.quizQuestions,
+		quizPaginationReducer.quizIndex
+	),
+});
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		fetchQuiz: () => {
-			dispatch(fetchQuiz());
-		},
-		nextQuestion: () => {
-			dispatch(nextQuestion());
-		},
-		previousQuestion: () => {
-			dispatch(previousQuestion());
-		},
-	};
-};
-
-const QuizWrapperComponent = (props) => {
-	return (
-		<div>
-			<Quiz
-				quizName={props.quizName}
-				quizQuestions={props.quizQuestions}
-				fetchQuiz={props.fetchQuiz}
-			/>
-			<QuizPaginationComponent
-				nextQuestion={props.nextQuestion}
-				previousQuestion={props.previousQuestion}
-			/>
-		</div>
-	);
-};
-
-const QuizContainer = connect(
+QuizContainer = connect(
 	mapStateToProps,
-	mapDispatchToProps
-)(QuizWrapperComponent);
+	{
+		fetchQuiz,
+		nextQuestion,
+		previousQuestion,
+	}
+)(QuizContainer);
 
 export default QuizContainer;
