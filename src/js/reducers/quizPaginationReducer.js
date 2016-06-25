@@ -4,10 +4,6 @@ const initalState = {
 	quizIndex: 0,
 };
 
-export const getQuestionAtIndex = (questions, index) => (
-	questions ? [questions[index]] : []
-);
-
 const quizPaginationReducer = (state = initalState, actions) => {
 	switch (actions.type) {
 	case NEXT_QUESTION:
@@ -31,3 +27,7 @@ const quizPaginationReducer = (state = initalState, actions) => {
 };
 
 export default quizPaginationReducer;
+
+export const getQuestionAtIndex = (questions, index) => (
+	questions ? [questions[index]] : []
+);
