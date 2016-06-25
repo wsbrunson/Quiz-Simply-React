@@ -1,4 +1,4 @@
-import submitQuiz from '../../src/js/actions/submitQuizAction';
+import { submitQuiz } from '../../src/js/actions/submitQuizAction';
 import { SUBMIT_QUIZ } from '../../src/js/constants/actionTypes';
 
 describe('submitQuiz Action', () => {
