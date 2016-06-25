@@ -1,21 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
 
-import rootReducer from './reducers/rootReducer';
+import configureStore from './configureStore';
+import Root from './components/Root';
 
-import App from './components/App';
+import '../css/main.scss';
 
-require('../css/main.scss');
-
-const store = createStore(
-	rootReducer,
-	{},
-	applyMiddleware(thunkMiddleware)
-	// window.devToolsExtension ? window.devToolsExtension() : undefined
-);
+const store = configureStore();
 
 // For testing, so that the app gets added to PhantomJS DOM
 const entryId = 'app';
@@ -32,8 +23,6 @@ if (typeof window !== 'undefined') {
 }
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Root store={store} />,
   appEntry
 );
