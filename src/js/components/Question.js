@@ -16,7 +16,7 @@ const renderAnswers = ({ text, id, questionId }, index) => (
 	/>
 );
 
-const Question = ({ questionText, answers }) => (
+const Question = ({ questionText, answers = [] }) => (
 	<li className="question">
 		<h3 className="question-text">{questionText}</h3>
 		<ul className="answers">

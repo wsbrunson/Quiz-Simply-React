@@ -1,3 +1,5 @@
+import compareObjects from 'deep-equal';
+
 const selectionsReducer = (state = [], actions) => {
 	return state.filter(selection => {
 		return selection.question !== actions.question;
@@ -6,6 +8,12 @@ const selectionsReducer = (state = [], actions) => {
 };
 
 export default selectionsReducer;
+
+export const checkIfSelected = (selections = [], ownChoice) => {
+	return selections.filter(selection => {
+		return compareObjects(selection, ownChoice);
+	}).length;
+};
 
 // const selections = (state = [], action) => {
 // 	switch (action.type) {

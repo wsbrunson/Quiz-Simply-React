@@ -1,31 +1,21 @@
 import { connect } from 'react-redux';
 import addSelection from '../actions/addSelectionAction';
-import compareObjects from 'deep-equal';
+import { checkIfSelected } from '../reducers/selectionsReducer';
 
 import Choice from '../components/Choice';
 
-const checkIfSelected = (selections = [], ownChoice) => {
-	return selections.filter(selection => {
-		return compareObjects(selection, ownChoice);
-	}).length;
-};
+const mapStateToProps = (state, ownProps) => ({
+	isSelected: checkIfSelected(state.selections, {
+		question: ownProps.questionNumber,
+		choice: ownProps.choiceNumber,
+	}),
+});
 
-const mapStateToProps = (state, ownProps) => {
-	return {
-		isSelected: checkIfSelected(state.selections, {
-			question: ownProps.questionNumber,
-			choice: ownProps.choiceNumber,
-		}),
-	};
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-	return {
-		saveSelection: () => {
-			dispatch(addSelection(ownProps.questionNumber, ownProps.choiceNumber));
-		},
-	};
-};
+const mapDispatchToProps = (dispatch, ownProps) => ({
+	saveSelection: () => {
+		dispatch(addSelection(ownProps.questionNumber, ownProps.choiceNumber));
+	},
+});
 
 const ChoiceContainer = connect(
 	mapStateToProps,
