@@ -1,26 +1,13 @@
 import { NEXT_QUESTION, PREVIOUS_QUESTION } from '../constants/actionTypes';
 
-const initalState = {
-	quizIndex: 0,
-};
+const initalIndex = 0;
 
-const quizPaginationReducer = (state = initalState, actions) => {
+const quizPaginationReducer = (state = initalIndex, actions) => {
 	switch (actions.type) {
 	case NEXT_QUESTION:
-		return (
-			Object.assign({}, state, {
-				quizIndex: actions.quizLength === state.quizIndex ?
-					actions.quizLength :
-					state.quizIndex + 1,
-			})
-		);
+		return state + 1;
 	case PREVIOUS_QUESTION:
-		return (
-			Object.assign({}, state, {
-				quizIndex: state.quizIndex ? state.quizIndex - 1 : 0,
-			})
-		);
-
+		return state - 1;
 	default:
 		return state;
 	}
@@ -28,6 +15,17 @@ const quizPaginationReducer = (state = initalState, actions) => {
 
 export default quizPaginationReducer;
 
-export const getQuestionAtIndex = (questions, index) => (
-	questions ? [questions[index]] : []
-);
+export const getQuestionAtIndex = (questions, index) => {
+	const question = [];
+	if (questions) {
+		if (questions.length <= index) {
+			question.push(questions[questions.length - 1]);
+		} else if (index <= -1) {
+			question.push(questions[0]);
+		} else {
+			question.push(questions[index]);
+		}
+	}
+
+	return question;
+};

@@ -5,6 +5,7 @@ const receiveQuiz = (quizName, quizQuestions) => ({
 	type: RECEIVE_QUIZ,
 	quizName,
 	quizQuestions,
+	quizLength: quizQuestions.length,
 });
 
 export const fetchQuiz = () => (dispatch) => {

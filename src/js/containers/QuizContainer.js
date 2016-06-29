@@ -37,10 +37,11 @@ QuizContainer.propTypes = {
 	quizQuestions: PropTypes.array.isRequired,
 };
 
+const mapStateToProps = ({ quizPaginationReducer, fetchQuizReducer }) => ({
 	quizName: fetchQuizReducer.quizName,
 	quizQuestions: getQuestionAtIndex(
 		fetchQuizReducer.quizQuestions,
-		quizPaginationReducer.quizIndex
+		quizPaginationReducer
 	),
 });
 

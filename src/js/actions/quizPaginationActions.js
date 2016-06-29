@@ -1,8 +1,7 @@
 import { NEXT_QUESTION, PREVIOUS_QUESTION } from '../constants/actionTypes';
 
-export const nextQuestion = (quizLength = 0) => ({
+export const nextQuestion = () => ({
 	type: NEXT_QUESTION,
-	quizLength,
 });
 
 export const previousQuestion = () => ({
