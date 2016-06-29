@@ -54,7 +54,7 @@ describe('QuizContainer', () => {
 		expect(quizService.getQuizData).toHaveBeenCalled();
 	});
 
-	describe('- QuizPagination Component', () => {
+	describe('> QuizPagination Component', () => {
 		let nextButton;
 		let questionText;
 

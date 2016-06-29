@@ -6,7 +6,7 @@ import { storeFake } from '../fakeData/storeFake';
 import ChoiceContainer from '../../src/js/containers/ChoiceContainer';
 import Choice from '../../src/js/components/Choice';
 
-describe('ChoiceContainer', () => {
+describe('Choice Container', () => {
 	describe('when a choice is in the selection array', () => {
 		let ChoiceComponent;
 
@@ -55,6 +55,8 @@ describe('ChoiceContainer', () => {
 					<ChoiceContainer
 						questionNumber={2}
 						choiceNumber={4}
+						choiceNumber={7}
+						choiceText="fake text"
 					/>
 				</Provider>
 			);

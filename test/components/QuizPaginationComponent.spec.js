@@ -1,32 +1,36 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 
-import { storeFake } from '../fakeData/storeFake';
 import QuizPaginationComponent from '../../src/js/components/QuizPaginationComponent';
-import Quiz from '../../src/js/components/Quiz';
 
-import { quizName, quizQuestions } from '../fakeData/quizFake';
-
-xdescribe('Quiz Pagination Component', () => {
+describe('Quiz Pagination Component', () => {
 	let Component;
+	let nextQuestion;
+	let previousQuestion;
 
 	beforeEach(() => {
-		const store = storeFake({});
+		nextQuestion = jasmine.createSpy('nextQuestion');
+		previousQuestion = jasmine.createSpy('previousQuestion');
 
-		const wrapper = mount(
-			<Provider store={store}>
-				<QuizPaginationComponent
-					quizName={quizName}
-					quizQuestions={quizQuestions}
-				/>
-			</Provider>
+		Component = mount(
+			<QuizPaginationComponent
+				nextQuestion={nextQuestion}
+				previousQuestion={previousQuestion}
+			/>
 		);
-
-		Component = wrapper.find(QuizPaginationComponent);
 	});
 
-	it('should render a Quiz', () => {
-		expect(Component.find(Quiz).length).toBeTruthy();
+	describe('when the next question button is clicked', () => {
+		it('should call the next question action', () => {
+			Component.find('.pagination-next-button').simulate('click');
+			expect(nextQuestion).toHaveBeenCalled();
+		});
+	});
+
+	describe('when the previous question button is clicked', () => {
+		it('should call the previous question action', () => {
+			Component.find('.pagination-previous-button').simulate('click');
+			expect(previousQuestion).toHaveBeenCalled();
+		});
 	});
 });
