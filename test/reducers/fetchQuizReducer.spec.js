@@ -9,11 +9,13 @@ describe('Fetch Quiz Reducer', () => {
 				type: RECEIVE_QUIZ,
 				quizName,
 				quizQuestions: quizDATA,
+				quizLength: quizDATA.length,
 			};
 
 			expect(fetchQuizReducer(undefined, receiveQuizAction)).toEqual({
 				quizName,
 				quizQuestions: quizDATA,
+				quizLength: quizDATA.length,
 			});
 		});
 	});

@@ -19,5 +19,6 @@ describe('FetchQuiz Action', () => {
 
 		expect(store.getActions()[0].quizName).toBe(quizName);
 		expect(store.getActions()[0].quizQuestions).toBe(quizDATA);
+		expect(store.getActions()[0].quizLength).toBe(quizDATA.length);
 	});
 });

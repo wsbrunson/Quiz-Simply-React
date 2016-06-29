@@ -3,11 +3,7 @@ import { NEXT_QUESTION, PREVIOUS_QUESTION } from '../../src/js/constants/actionT
 
 describe('nextQuestion Action', () => {
 	it('should return a nextQuestion action', () => {
-		expect(nextQuestion()).toEqual({ type: NEXT_QUESTION, quizLength: 0 });
-	});
-
-	it('should return a nextQuestion action with a lenght when given', () => {
-		expect(nextQuestion(2)).toEqual({ type: NEXT_QUESTION, quizLength: 2 });
+		expect(nextQuestion()).toEqual({ type: NEXT_QUESTION });
 	});
 });
 

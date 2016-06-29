@@ -1,8 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { mount } from 'enzyme';
+
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import { mount } from 'enzyme';
 
 import quizPaginationReducer from '../../src/js/reducers/quizPaginationReducer';
 import fetchQuizReducer from '../../src/js/reducers/fetchQuizReducer';
@@ -21,29 +22,18 @@ describe('QuizContainer', () => {
 		spyOn(quizService, 'getQuizName').and.returnValue(quizName);
 		spyOn(quizService, 'getQuizData').and.returnValue(quizQuestions);
 
-		const reducers = combineReducers({ quizPaginationReducer, fetchQuizReducer });
-
-		let store = createStore(
-			reducers,
+		const store = createStore(
+			combineReducers({ quizPaginationReducer, fetchQuizReducer }),
+			{},
 			applyMiddleware(thunkMiddleware)
 		);
-
 		const wrapper = mount(
 			<Provider store={store}>
 				<QuizContainer />
 			</Provider>
 		);
-
 		QuizComponent = wrapper.find(Quiz);
 		QuizPagination = wrapper.find(QuizPaginationComponent);
-	});
-
-	it('should render the quiz with a quiz name from the quiz data', () => {
-		expect(QuizComponent.prop('quizName')).toBe(quizName);
-	});
-
-	xit('should render QuizPagination with correct quiz data', () => {
-		expect(QuizComponent.prop('quizQuestions').length).toBe(1);
 	});
 
 	it('should fetch quiz when loaded', () => {
@@ -51,7 +41,20 @@ describe('QuizContainer', () => {
 		expect(quizService.getQuizData).toHaveBeenCalled();
 	});
 
-	xdescribe('- QuizPagination Component', () => {
+	it('should render the quiz with a quiz name from the quiz data', () => {
+		expect(QuizComponent.prop('quizName')).toBe(quizName);
+	});
+
+	it('should render a question', () => {
+		expect(QuizComponent.find('h3').text()).toBe(quizQuestions[0].text);
+	});
+
+	it('should fetch quiz when loaded', () => {
+		expect(quizService.getQuizName).toHaveBeenCalled();
+		expect(quizService.getQuizData).toHaveBeenCalled();
+	});
+
+	describe('- QuizPagination Component', () => {
 		let nextButton;
 		let questionText;
 
@@ -69,7 +72,7 @@ describe('QuizContainer', () => {
 				expect(getUpdatedText()).toBe(quizQuestions[1].text);
 			});
 
-			it('should not navigate to the next question when there are non left', () => {
+			it('should not navigate to the next question when there are none left', () => {
 				nextButton.simulate('click');
 
 				expect(getUpdatedText()).toBe(quizQuestions[1].text);
