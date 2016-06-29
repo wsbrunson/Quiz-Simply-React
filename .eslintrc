@@ -1,37 +1,14 @@
 {
-	"extends": ["airbnb"],
+	"extends": "airbnb",
 	"parser": "babel-eslint",
-	"plugins": ["react"],
-	"settings": {
-		"import/resolver": {
-			"webpack": {
-				"config": "webpack.config.dev.js"
-			}
-		}
-	},
 	"env": {
-		"jasmine": true,
-		"es6": true
+		"jasmine": true
 	},
-	"ecmaFeatures": {
-		"arrowFunctions": true,
-		"blockBindings": true,
-		"templateStrings": true,
-		"modules": true,
-		"esnext": true
-	},
-  "rules": {
-			"arrow-body-style": 0,
-			"react/prop-types": 0,
-			"react/jsx-indent": 0,
-			"react/jsx-indent-props": [0],
-			"react/jsx-no-bind": [0],
-      "semi": [2, "always"],
-      "quotes": [2, "single"],
-			"no-console": [0],
-			"no-trailing-spaces": [0],
-			"no-underscore-dangle": [0],
-			"space-before-function-paren": [2, "never"],
-			"indent": [2, "tab"]
-		}
+	"rules": {
+		"indent": ["error", "tab"],
+		"no-trailing-space": [0],
+		"react/jsx-indent": [2, "tab"],
+		"react/jsx-indent-props": [2, "tab"],
+		"yoda": [0]
+	}
 }
