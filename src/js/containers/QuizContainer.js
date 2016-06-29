@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchQuiz } from '../actions/fetchQuizActions';
 import { nextQuestion, previousQuestion } from '../actions/quizPaginationActions';
@@ -29,7 +29,14 @@ class QuizContainer extends Component {
 	}
 }
 
-const mapStateToProps = ({ fetchQuizReducer, quizPaginationReducer }) => ({
+QuizContainer.propTypes = {
+	fetchQuiz: PropTypes.func.isRequired,
+	nextQuestion: PropTypes.func.isRequired,
+	previousQuestion: PropTypes.func.isRequired,
+	quizName: PropTypes.string.isRequired,
+	quizQuestions: PropTypes.array.isRequired,
+};
+
 	quizName: fetchQuizReducer.quizName,
 	quizQuestions: getQuestionAtIndex(
 		fetchQuizReducer.quizQuestions,

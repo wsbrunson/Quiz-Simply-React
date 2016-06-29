@@ -20,15 +20,15 @@ describe('Question Component', () => {
 		answers = ['1', '2', '3'];
 		saveSelection = jasmine.createSpy('save');
 
-		const createComponent = (answersArray, text) => {
-			return shallow(
+		const createComponent = (answersArray, text) => (
+			shallow(
 				<Question
 					answers={answersArray}
 					questionText={text}
 					saveSelection={saveSelection}
 				/>
-			);
-		};
+			)
+		);
 
 		ComponentWithSingleChoice = createComponent(answer, question1Text);
 		ComponentWithMultipleChoices = createComponent(answers, question2Text);

@@ -24,6 +24,6 @@ const Choice = ({ saveSelection, choiceText, questionNumber, choiceNumber }) => 
 );
 
 
-Choice.PropTypes = propTypes;
+Choice.propTypes = propTypes;
 
 export default Choice;

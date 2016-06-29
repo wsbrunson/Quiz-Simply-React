@@ -23,6 +23,6 @@ if (typeof window !== 'undefined') {
 }
 
 render(
-  <Root store={store} />,
+	<Root store={store} />,
   appEntry
 );

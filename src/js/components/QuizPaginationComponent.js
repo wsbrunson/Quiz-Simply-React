@@ -18,7 +18,7 @@ const QuizPaginationComponent = (props) => (
 		<label>NEXT
 			<input
 				type="button"
-				onClick={props.nextQuestion.bind(this, props.quizLength)}
+				onClick={props.nextQuestion}
 				className="pagination-next-button"
 				placeholder="NEXT"
 			/>
@@ -26,6 +26,6 @@ const QuizPaginationComponent = (props) => (
 	</div>
 );
 
-QuizPaginationComponent.PropTypes = propTypes;
+QuizPaginationComponent.propTypes = propTypes;
 
 export default QuizPaginationComponent;

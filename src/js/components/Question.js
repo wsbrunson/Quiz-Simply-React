@@ -25,6 +25,6 @@ const Question = ({ questionText, answers = [] }) => (
 	</li>
 );
 
-Question.PropTypes = propTypes;
+Question.propTypes = propTypes;
 
 export default Question;
