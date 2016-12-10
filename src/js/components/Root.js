@@ -8,9 +8,9 @@ const propTypes = {
 };
 
 const Root = ({ store }) => (
-	<Provider store={store}>
-    <App />
-  </Provider>,
+    <Provider store={store}>
+        <App />
+    </Provider>
 );
 
 Root.PropTypes = propTypes;
