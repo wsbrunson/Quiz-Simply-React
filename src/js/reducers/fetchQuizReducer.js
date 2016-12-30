@@ -1,24 +1,27 @@
-import { RECEIVE_QUIZ } from '../constants/actionTypes';
+// @flow
+import { RECEIVE_QUIZ } from '../constants/actionTypes'
+
+import type { TypeQuizState } from '../types/store.flow'
+import type { TypeAction } from '../types/actions.flow'
 
 const initalState = {
-	quizName: '',
-	quizQuestions: [],
-	quizLength: 0,
-};
+  quizName: '',
+  quizQuestions: [],
+  quizLength: 0
+}
 
-const fetchQuizReducer = (state = initalState, action) => {
-	switch (action.type) {
+const fetchQuizReducer = (state: TypeQuizState = initalState, action: TypeAction): TypeQuizState => {
+  switch (action.type) {
+    case RECEIVE_QUIZ:
+      return {
+        ...state,
+        quizName: action.payload.quizName,
+        quizQuestions: action.payload.quizQuestions,
+        quizLength: action.payload.quizLength
+      }
+    default:
+      return state
+  }
+}
 
-	case RECEIVE_QUIZ:
-		return {
-			quizName: action.quizName,
-			quizQuestions: action.quizQuestions,
-			quizLength: action.quizQuestions ? action.quizQuestions.length : 0,
-		};
-
-	default:
-		return state;
-	}
-};
-
-export default fetchQuizReducer;
+export default fetchQuizReducer

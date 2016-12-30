@@ -1,3 +1,7 @@
 language: node_js
 node_js:
   - "4.1"
+cache:
+  yarn: true
+  directories:
+    - node_modules 

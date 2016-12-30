@@ -1,25 +1,26 @@
-import { connect } from 'react-redux';
-import addSelection from '../actions/addSelectionAction';
-import { checkIfSelected } from '../reducers/selectionsReducer';
 
-import Choice from '../components/Choice';
+import { connect } from 'react-redux'
+import { addSelection } from '../actions/addSelectionActions'
+import { checkIfSelected } from '../reducers/selectionsReducer'
+
+import Choice from '../components/Choice'
 
 const mapStateToProps = (state, ownProps) => ({
-	isSelected: checkIfSelected(state.selections, {
-		question: ownProps.questionNumber,
-		choice: ownProps.choiceNumber,
-	}),
-});
+  isSelected: checkIfSelected(state.selections, {
+    question: ownProps.questionNumber,
+    choice: ownProps.choiceNumber
+  })
+})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	saveSelection: () => {
-		dispatch(addSelection(ownProps.questionNumber, ownProps.choiceNumber));
-	},
-});
+  saveSelection: () => {
+    dispatch(addSelection(ownProps.questionNumber, ownProps.choiceNumber))
+  }
+})
 
 const ChoiceContainer = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Choice);
+  mapStateToProps,
+  mapDispatchToProps
+)(Choice)
 
-export default ChoiceContainer;
+export default ChoiceContainer

@@ -1,14 +1,9 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+// @flow
+import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
 
-import rootReducer from './reducers/rootReducer';
+import rootReducer from './reducers/rootReducer'
 
-const configureStore = () => (
-	createStore(
-		rootReducer,
-		{},
-		applyMiddleware(thunkMiddleware)
-	)
-);
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
-export default configureStore;
+export default store
