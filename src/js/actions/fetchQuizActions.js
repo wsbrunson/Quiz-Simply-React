@@ -1,18 +1,37 @@
-import { RECEIVE_QUIZ } from '../constants/actionTypes';
-import quizSerivce from '../services/quizService';
+// @flow
+import { RECEIVE_QUIZ } from '../constants/actionTypes'
+import quizSerivce from '../services/quizService'
 
-const receiveQuiz = (quizName, quizQuestions) => ({
-	type: RECEIVE_QUIZ,
-	quizName,
-	quizQuestions,
-	quizLength: quizQuestions.length,
-});
+import type { TypeThunk } from '../types/store.flow'
+import type { TypeQuestion } from '../types/quiz.flow'
 
-export const fetchQuiz = () => (dispatch) => {
-	dispatch(receiveQuiz(
-		quizSerivce.getQuizName(),
-		quizSerivce.getQuizData()
-	));
+export type TypeReceiveQuizAction = {
+  type: typeof RECEIVE_QUIZ,
+  payload: {
+    quizName: string,
+    quizQuestions: TypeQuestion[],
+    quizLength: number
+  }
+}
+type TypeReceiveQuizParamters = {
+  quizName: string,
+  quizQuestions: TypeQuestion[]
+}
+export const receiveQuiz = ({
+  quizName,
+  quizQuestions = []
+}: TypeReceiveQuizParamters): TypeReceiveQuizAction => ({
+  type: RECEIVE_QUIZ,
+  payload: {
+    quizName,
+    quizQuestions,
+    quizLength: quizQuestions.length
+  }
+})
 
-	return null;
-};
+export const fetchQuiz = (): TypeThunk<*> => (dispatch) => (
+  dispatch(receiveQuiz({
+    quizName: quizSerivce.getQuizName(),
+    quizQuestions: quizSerivce.getQuizData()
+  }))
+)

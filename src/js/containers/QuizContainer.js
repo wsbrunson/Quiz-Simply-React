@@ -1,57 +1,62 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { fetchQuiz } from '../actions/fetchQuizActions';
-import { nextQuestion, previousQuestion } from '../actions/quizPaginationActions';
-import { getQuestionAtIndex } from '../reducers/quizPaginationReducer';
+// @flow
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchQuiz } from '../actions/fetchQuizActions'
+import { nextQuestion, previousQuestion } from '../actions/quizPaginationActions'
+import { getQuestionAtIndex } from '../reducers/quizPaginationReducer'
 
-import QuizPaginationComponent from '../components/QuizPaginationComponent';
-import Quiz from '../components/Quiz';
+import QuizPagination from '../components/QuizPagination'
+import Quiz from '../components/Quiz'
 
-class QuizContainer extends Component {
-	componentDidMount() {
-		this.props.fetchQuiz();
-	}
+import type { TypeQuestion } from '../types/quiz.flow'
 
-	render() {
-		return (
-			<div>
-				<Quiz
-					quizName={this.props.quizName}
-					quizQuestions={this.props.quizQuestions}
-					fetchQuiz={this.props.fetchQuiz}
-				/>
-				<QuizPaginationComponent
-					nextQuestion={this.props.nextQuestion}
-					previousQuestion={this.props.previousQuestion}
-				/>
-			</div>
-		);
-	}
+type TypeQuizContainerPropTypes = {
+  fetchQuiz: Function,
+  nextQuestion: Function,
+  previousQuestion: Function,
+  quizName: string,
+  quizQuestions: TypeQuestion[]
 }
 
-QuizContainer.propTypes = {
-	fetchQuiz: PropTypes.func.isRequired,
-	nextQuestion: PropTypes.func.isRequired,
-	previousQuestion: PropTypes.func.isRequired,
-	quizName: PropTypes.string.isRequired,
-	quizQuestions: PropTypes.array.isRequired,
-};
+class QuizContainer extends Component {
+  propTypes: TypeQuizContainerPropTypes
+
+  componentDidMount () {
+    this.props.fetchQuiz()
+  }
+
+  render () {
+    return (
+      <div>
+        <Quiz
+          quizName={this.props.quizName}
+          quizQuestions={this.props.quizQuestions}
+          fetchQuiz={this.props.fetchQuiz}
+        />
+        <QuizPagination
+          nextQuestion={this.props.nextQuestion}
+          previousQuestion={this.props.previousQuestion}
+        />
+      </div>
+    )
+  }
+}
 
 const mapStateToProps = ({ quizPaginationReducer, fetchQuizReducer }) => ({
-	quizName: fetchQuizReducer.quizName,
-	quizQuestions: getQuestionAtIndex(
-		fetchQuizReducer.quizQuestions,
-		quizPaginationReducer
-	),
-});
+  quizName: fetchQuizReducer.quizName,
+  quizQuestions: getQuestionAtIndex(
+    fetchQuizReducer.quizQuestions,
+    quizPaginationReducer
+  )
+})
 
-QuizContainer = connect(
-	mapStateToProps,
-	{
-		fetchQuiz,
-		nextQuestion,
-		previousQuestion,
-	}
-)(QuizContainer);
+const QuizContainerConnected = connect(
+  mapStateToProps,
+  {
+    fetchQuiz,
+    nextQuestion,
+    previousQuestion
+  }
+)(QuizContainer)
 
-export default QuizContainer;
+export default QuizContainerConnected

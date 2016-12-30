@@ -1,29 +1,30 @@
-import React, { PropTypes } from 'react';
+// @flow
+import React from 'react'
 
-import Question from './Question';
+import Question from './Question'
 
-const propTypes = {
-	quizName: PropTypes.string.isRequired,
-	quizQuestions: PropTypes.array.isRequired,
-};
+import type { TypeQuestion } from '../types/quiz.flow'
+
+type TypeQuizPropTypes = {
+  quizName: string,
+  quizQuestions: TypeQuestion[]
+}
 
 const renderQuestions = (question = {}, index) => (
-	<Question
-		key={index}
-		questionText={question.text}
-		answers={question.answers}
-	/>
-);
+  <Question
+    key={index}
+    questionText={question.title}
+    choices={question.choices}
+  />
+)
 
-const Quiz = ({ quizName, quizQuestions = [] }) => (
-	<div className="quiz">
-		<h2 className="quiz-name">{quizName}</h2>
-		<ul>
-			{quizQuestions.map(renderQuestions)}
-		</ul>
-	</div>
-);
+const Quiz = ({ quizName, quizQuestions = [] }: TypeQuizPropTypes) => (
+  <div className='quiz'>
+    <h2 className='quiz-name'>{quizName}</h2>
+    <ul>
+      {quizQuestions.map(renderQuestions)}
+    </ul>
+  </div>
+)
 
-Quiz.PropTypes = propTypes;
-
-export default Quiz;
+export default Quiz

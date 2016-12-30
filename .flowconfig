@@ -1,0 +1,10 @@
+[ignore]
+./node_modules/fbjs/lib/Deferred.js.flow
+./node_modules/fbjs/lib/shallowEqual.js.flow
+
+[libs]
+./interfaces/global.js
+
+[options]
+module.name_mapper='.*\(.css\)' -> 'CSSModule'
+module.system=haste

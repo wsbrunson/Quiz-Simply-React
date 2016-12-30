@@ -1,18 +1,17 @@
-import React, { PropTypes } from 'react';
-import { Provider } from 'react-redux';
+// @flow
+import React from 'react'
+import { Provider } from 'react-redux'
 
-import App from './App';
+import App from './App'
 
-const propTypes = {
-	store: PropTypes.object.isRequired,
-};
+type TypeAppPropTypes = {
+  store: {}
+}
 
-const Root = ({ store }) => (
-    <Provider store={store}>
-        <App />
-    </Provider>
-);
+const Root = ({ store }: TypeAppPropTypes) => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+)
 
-Root.PropTypes = propTypes;
-
-export default Root;
+export default Root
