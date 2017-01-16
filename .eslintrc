@@ -23,6 +23,6 @@
 		"semi": "off",
 		"no-trailing-spaces": "off",
 		"no-tabs": "off",
-		"object-curly-spacing": "off"
+		"react/jsx-indent": "off"
 	}
 }
