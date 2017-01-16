@@ -7,8 +7,8 @@
   "scripts": {
     "build": "WEBPACK_ENV=prod webpack --config webpack.config.js",
     "dev": "WEBPACK_ENV=dev webpack-dev-server --config webpack.config.js",
-    "lint": "eslint ./src/js/**/*.js",
-    "prettier": "prettier --write ./src/js/**/*.js",
+    "lint": "eslint ./src/**/*.js",
+    "prettier": "prettier --write ./src/**/*.js ./src/js/**/*.js",
     "test": "npm run prettier && npm run lint && flow && jest",
     "test:watch": "jest --watch"
   },

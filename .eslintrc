@@ -1,7 +1,8 @@
 {
 	"parser": "babel-eslint",
 	"env": {
-		"jasmine": true
+		"jest": true,
+		"browser": true
 	},
 	"extends": [
 		"airbnb",

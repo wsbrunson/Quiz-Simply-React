@@ -1,27 +1,13 @@
 // @flow
-import React from 'react'
-import { render } from 'react-dom'
+import React from "react";
+import { render } from "react-dom";
 
-import store from './configureStore'
-import Root from './components/Root'
+import store from "./configureStore";
+import Root from "./components/Root";
 
-import '../css/main.scss'
+import "../css/main.scss";
 
-// For testing, so that the app gets added to PhantomJS DOM
-const entryId = 'app'
-const appEntry = document.getElementById(entryId)
+const entryId = "app";
+const appEntry = document.getElementById(entryId);
 
-if (!appEntry) {
-  const newDiv = document.createElement('div')
-  newDiv.id = entryId
-  document.body.appendChild(newDiv)
-}
-
-if (typeof window !== 'undefined') {
-  window.React = React
-}
-
-render(
-  <Root store={store} />,
-  appEntry
-)
+render(<Root store={store} />, appEntry);
