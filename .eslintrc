@@ -1,14 +1,27 @@
 {
-	"extends": "airbnb",
 	"parser": "babel-eslint",
 	"env": {
 		"jasmine": true
 	},
+	"extends": [
+		"airbnb",
+    	"plugin:flowtype/recommended"
+	],
+	"plugins": [
+		"flowtype"
+	],
 	"rules": {
-		"indent": ["error", "tab"],
-		"no-trailing-space": [0],
-		"react/jsx-indent": [2, "tab"],
-		"react/jsx-indent-props": [2, "tab"],
-		"yoda": [0]
+		"quotes": 0,
+		"import/prefer-default-export": 0,
+		"comma-dangle": 0,
+		"react/jsx-filename-extension": 0,
+		"no-use-before-define": 0,
+		"brace-style": 0,
+		"indent": "off",
+		"max-len": 0,
+		"semi": "off",
+		"no-trailing-spaces": "off",
+		"no-tabs": "off",
+		"object-curly-spacing": "off"
 	}
 }
