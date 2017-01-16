@@ -1,30 +1,36 @@
 // @flow
-import React from 'react'
+import React from "react";
 
 type QuizPaginationPropTypes = {
   nextQuestion: Function,
   previousQuestion: Function
-}
+};
 
-const QuizPagination = ({ previousQuestion, nextQuestion }: QuizPaginationPropTypes) => (
+const QuizPagination = (
+  { previousQuestion, nextQuestion }: QuizPaginationPropTypes
+) => (
   <div>
-    <label>PREVIOUS
-    <input
-      type='button'
-      onClick={previousQuestion}
-      className='pagination-previous-button'
-      placeholder='PREVIOUS'
-    />
+    <label htmlFor="previous-button">
+      PREVIOUS
+      <input
+        id="previous-button"
+        type="button"
+        onClick={previousQuestion}
+        className="pagination-previous-button"
+        placeholder="PREVIOUS"
+      />
     </label>
-    <label>NEXT
-    <input
-      type='button'
-      onClick={nextQuestion}
-      className='pagination-next-button'
-      placeholder='NEXT'
-    />
+    <label htmlFor="next-button">
+      NEXT
+      <input
+        id="next-button"
+        type="button"
+        onClick={nextQuestion}
+        className="pagination-next-button"
+        placeholder="NEXT"
+      />
     </label>
   </div>
-)
+);
 
-export default QuizPagination
+export default QuizPagination;

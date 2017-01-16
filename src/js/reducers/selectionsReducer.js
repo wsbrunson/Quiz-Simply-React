@@ -1,19 +1,24 @@
+import compareObjects from "deep-equal";
 
-import compareObjects from 'deep-equal'
+import type { TypeAction } from "../types/actions.flow";
+import type { TypeSelectionsState } from "../types/store.flow";
 
-import type { TypeAction } from '../types/actions.flow'
-import type { TypeSelectionsState } from '../types/store.flow'
+const selectionFilter = actions =>
+  selection => selection.question !== actions.question;
 
-const selectionsReducer = (state: TypeSelectionsState = [], actions: TypeAction) => {
-  return state.filter(selection => {
-    return selection.question !== actions.question
-  }).concat(actions)
-}
+const compareObjectsFilter = firstObject =>
+  secondObject => compareObjects(secondObject, firstObject);
 
-export default selectionsReducer
+const selectionsReducer = (
+  state: TypeSelectionsState = [],
+  actions: TypeAction
+) =>
+  state.filter(selectionFilter(actions)).concat(actions);
 
-export const checkIfSelected = (selections: TypeSelectionsState = [], ownChoice) => {
-  return selections.filter(selection => {
-    return compareObjects(selection, ownChoice)
-  }).length
-}
+export default selectionsReducer;
+
+export const checkIfSelected = (
+  selections: TypeSelectionsState = [],
+  ownChoice
+) =>
+  selections.filter(compareObjectsFilter(ownChoice)).length;

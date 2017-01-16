@@ -1,12 +1,8 @@
 // @flow
-import { quizName, quizDATA } from '../quizJSON'
+import { quizName, quizDATA } from "../quizJSON";
 
-const getQuizName = () => {
-  return quizName
-}
+const getQuizName = () => quizName;
 
-const getQuizData = () => {
-  return quizDATA
-}
+const getQuizData = () => quizDATA;
 
 export default { getQuizName, getQuizData }
