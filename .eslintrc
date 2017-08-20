@@ -1,28 +1,3 @@
 {
-	"parser": "babel-eslint",
-	"env": {
-		"jest": true,
-		"browser": true
-	},
-	"extends": [
-		"airbnb",
-    	"plugin:flowtype/recommended"
-	],
-	"plugins": [
-		"flowtype"
-	],
-	"rules": {
-		"quotes": 0,
-		"import/prefer-default-export": 0,
-		"comma-dangle": 0,
-		"react/jsx-filename-extension": 0,
-		"no-use-before-define": 0,
-		"brace-style": 0,
-		"indent": "off",
-		"max-len": 0,
-		"semi": "off",
-		"no-trailing-spaces": "off",
-		"no-tabs": "off",
-		"react/jsx-indent": "off"
-	}
+  "extends": "react-app"
 }
