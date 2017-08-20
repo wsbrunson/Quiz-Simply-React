@@ -28,7 +28,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
-    "flow": "flow"
+    "flow": "flow",
+    "ci": "yarn run flow && yarn run build && yarn test"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
