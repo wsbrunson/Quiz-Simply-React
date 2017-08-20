@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Quiz Reducer requestQuizSucceeded should add questions to state 1`] = `
+Object {
+  "questions": Object {
+    "0": Object {
+      "id": 0,
+    },
+  },
+}
+`;
