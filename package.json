@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "enzyme": "^2.9.1",
+    "flow-coverage-report": "^0.3.0",
     "react-scripts": "1.0.11",
     "redux-saga-test-engine": "^2.0.3"
   },
@@ -29,6 +30,7 @@
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
     "flow": "flow",
+    "flow:coverage": "flow-coverage-report -i \"./src/**/*.js\" -x \"./src/**/*.test.js\" -x \"./src/registerServiceWorker.js\" -x \"./src/index.js\" -x \"./src/configureStore.js\"",
     "ci": "yarn run flow && yarn run build && yarn test"
   },
   "lint-staged": {
