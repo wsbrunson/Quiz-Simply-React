@@ -7,7 +7,9 @@ import Quiz from '../components/Quiz';
 import { requestQuiz } from '../quizActions';
 import { getAllQuestions } from '../quizSelectors';
 
-const mapStateToProps = state => ({
+import type { TypeStore } from '../../types/TypeStore.flow';
+
+const mapStateToProps = (state: TypeStore) => ({
   questions: getAllQuestions(state),
 });
 
