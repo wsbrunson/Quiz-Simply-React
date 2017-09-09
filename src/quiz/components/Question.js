@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Choice from './Choice';
+import ChoiceContainer from '../containers/ChoiceContainer';
 
 import type { TypeChoice } from '../../types/TypeQuiz.flow';
 
@@ -12,7 +12,7 @@ type TypeProps = {
 };
 
 const renderChoices = (choice: TypeChoice) =>
-  <Choice key={choice.id} {...choice} />;
+  <ChoiceContainer key={choice.id} {...choice} />;
 
 const Question = ({ text, choices = [] }: TypeProps) =>
   <QuestionMain>

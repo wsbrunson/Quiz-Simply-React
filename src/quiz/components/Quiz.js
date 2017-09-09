@@ -7,6 +7,7 @@ import type {
   TypeQuestion,
 } from '../../types/TypeQuiz.flow';
 
+import QuizActionsContainer from '../containers/QuizActionsContainer';
 import Question from './Question';
 
 type TypeProps = {
@@ -37,6 +38,7 @@ class Quiz extends Component<TypeProps> {
           <ol>
             {this.props.questions.map(this.renderQuestions)}
           </ol>
+          <QuizActionsContainer />
         </QuizRight>
       </QuizMain>
     );

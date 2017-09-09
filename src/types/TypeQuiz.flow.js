@@ -25,3 +25,7 @@ export type TypeApiQuiz = {
 export type TypeAppQuiz = {
   questions: TypeQuestionsMap,
 };
+
+export type TypeSelectionsMap = {
+  [questionId: string]: string,
+};

@@ -2,18 +2,36 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import type { TypeSelectionsMap } from '../../types/TypeQuiz.flow';
+
 export type TypeChoicePropTypes = {
   text: string,
   questionId: number,
   id: number,
+  selectChoice: (selection: TypeSelectionsMap) => void,
 };
 
-const Choice = ({ text, questionId, id }: TypeChoicePropTypes) => {
+const Choice = ({
+  text,
+  questionId,
+  id,
+  selectChoice,
+}: TypeChoicePropTypes) => {
   const htmlId = `choice-${questionId}-${id}`;
   const htmlName = `question-${questionId}`;
+  const onSelectChoice = () =>
+    selectChoice({
+      [questionId]: id,
+    });
+
   return (
     <li className="choice">
-      <input type="radio" name={htmlName} id={htmlId} />
+      <input
+        type="radio"
+        name={htmlName}
+        id={htmlId}
+        onClick={onSelectChoice}
+      />
       <Label htmlFor={htmlId}>
         {text}
       </Label>
