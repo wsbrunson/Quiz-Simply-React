@@ -8,7 +8,7 @@ export type TypeChoice = {
 export type TypeQuestion = {
   id: number,
   text: string,
-  answers: TypeChoice[],
+  choices: TypeChoice[],
 };
 
 export type TypeQuestionsMap = {
