@@ -1,5 +1,7 @@
 // @flow
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
 import type {
   TypeQuestionsArray,
   TypeQuestion,
@@ -23,22 +25,37 @@ class Quiz extends Component<TypeProps> {
   }
 
   renderQuestions = (question: TypeQuestion) =>
-    <Question
-      key={question.id}
-      text={question.text}
-      choices={question.answers}
-    />;
+    <Question key={question.id} {...question} />;
 
   render() {
     return (
-      <div className="quiz">
-        <h2 className="quiz-name">Fun Time Quiz</h2>
-        <ul>
-          {this.props.questions.map(this.renderQuestions)}
-        </ul>
-      </div>
+      <QuizMain>
+        <QuizLeft>
+          <QuizTitle>Fun Time Quiz</QuizTitle>
+        </QuizLeft>
+        <QuizRight>
+          <ol>
+            {this.props.questions.map(this.renderQuestions)}
+          </ol>
+        </QuizRight>
+      </QuizMain>
     );
   }
 }
+
+const QuizMain = styled.div`
+  display: flex;
+  justify-content: center;
+  background-color: lightgoldenrodyellow;
+`;
+
+const QuizLeft = styled.div`width: 35%;`;
+
+const QuizTitle = styled.h2`
+  text-align: right;
+  text-transform: uppercase;
+`;
+
+const QuizRight = styled.div`width: 45%;`;
 
 export default Quiz;

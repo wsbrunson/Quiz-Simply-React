@@ -1,5 +1,8 @@
 // @flow
 import React from 'react';
+import styled from 'styled-components';
+
+import Choice from './Choice';
 
 import type { TypeChoice } from '../../types/TypeQuiz.flow';
 
@@ -8,12 +11,32 @@ type TypeProps = {
   choices: TypeChoice[],
 };
 
+const renderChoices = (choice: TypeChoice) =>
+  <Choice key={choice.id} {...choice} />;
+
 const Question = ({ text, choices = [] }: TypeProps) =>
-  <li className="question">
-    <h3 className="question-text">
+  <QuestionMain>
+    <QuestionTitle>
       {text}
-    </h3>
-    <ul className="answers" />
-  </li>;
+    </QuestionTitle>
+    <UnorderedList>
+      {choices.map(renderChoices)}
+    </UnorderedList>
+  </QuestionMain>;
+
+const QuestionMain = styled.li``;
+
+const QuestionTitle = styled.h3`
+  text-align: center;
+  background-color: darkblue;
+  color: lightgoldenrodyellow;
+  padding: 0.5em;
+  box-shadow: 0.5em -0.5em cyan;
+`;
+
+const UnorderedList = styled.ul`
+  list-style: none;
+  padding-left: 1.2em;
+`;
 
 export default Question;
